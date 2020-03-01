@@ -1,0 +1,5 @@
+# executable
+lan-weatherd
+
+# object files
+*.o
