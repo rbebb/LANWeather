@@ -3,7 +3,7 @@ LD = g++
 CCFLAGS = -lpigpio -lrt
 LDFLAGS = -Wall -pthread
 EXE = temp_sensor
-OBJS = temp_sensor.o
+OBJS = si7021.o
 
 all: $(EXE)
 
