@@ -2,7 +2,7 @@ CC = g++
 LD = g++
 CCFLAGS = -Wall
 LDFLAGS = -lstdc++
-EXE = lan-weatherd
+EXE = lanweatherd
 OBJS = main.o
 
 RM = /bin/rm
