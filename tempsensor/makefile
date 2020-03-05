@@ -1,7 +1,7 @@
 CC = g++
 LD = g++
-CCFLAGS = -lpigpio -lrt
-LDFLAGS = -Wall -pthread
+CCFLAGS = -Wall -pthread
+LDFLAGS = -lpigpio -lrt
 EXE = temp_sensor
 OBJS = si7021.o
 
