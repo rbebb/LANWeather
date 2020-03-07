@@ -5,6 +5,7 @@
 #include <unistd.h>
 #include <sys/stat.h>
 #include <syslog.h>
+#include <pthread.h>
 
 
 int main(void) {
@@ -28,7 +29,7 @@ int main(void) {
     umask(0);
 
     // tap into the system log
-    openlog("lan-weatherd", LOG_NOWAIT |  LOG_PID, LOG_USER);
+    openlog("lan-weatherd", LOG_NOWAIT | LOG_PID, LOG_USER);
     syslog(LOG_NOTICE, "started LAN Weather daemon");
 
     // session id

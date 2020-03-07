@@ -1,6 +1,6 @@
 CC = g++
 LD = g++
-CCFLAGS = -Wall
+CCFLAGS = -pthread -Wall
 LDFLAGS = -lstdc++
 EXE = lanweatherd
 OBJS = main.o
