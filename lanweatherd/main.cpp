@@ -5,8 +5,15 @@
 #include <unistd.h>
 #include <sys/stat.h>
 #include <syslog.h>
-#include <pthread.h>
+#include <thread>
 
+
+using namespace std;
+
+int *nop(void) {
+    syslog(LOG_NOTICE, "called nop");
+    return 0;
+}
 
 int main(void) {
     // TODO: check for existing instance of the daemon
@@ -50,7 +57,8 @@ int main(void) {
     close(STDOUT_FILENO);
     close(STDERR_FILENO);
 
-
+    std::thread thr (nop);
+    thr.join();
 
     // cleanup
     syslog(LOG_NOTICE, "stopping lan-weatherd");
