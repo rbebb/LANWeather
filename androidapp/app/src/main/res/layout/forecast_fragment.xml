@@ -12,7 +12,6 @@
         android:text="@string/forecast"
         android:textSize="40sp"
         android:textColor="@android:color/white"
-        android:fontFamily="@font/fjalla_one"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
