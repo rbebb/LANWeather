@@ -6,6 +6,7 @@
 #include <sys/stat.h>
 #include <syslog.h>
 #include <thread>
+#include <vector>
 
 
 using namespace std;
@@ -36,7 +37,7 @@ int main(void) {
     umask(0);
 
     // tap into the system log
-    openlog("lan-weatherd", LOG_NOWAIT | LOG_PID, LOG_USER);
+    openlog("lanweatherd", LOG_NOWAIT | LOG_PID, LOG_USER);
     syslog(LOG_NOTICE, "started LAN Weather daemon");
 
     // session id
@@ -57,11 +58,26 @@ int main(void) {
     close(STDOUT_FILENO);
     close(STDERR_FILENO);
 
-    std::thread thr (nop);
-    thr.join();
+    std::vector<std::thread> threads;
+
+    std::thread thr_nws_fetch(nop);
+    threads.push_back(std::move(thr_nws_fetch)); // n.b. thread objects can't be copied
+
+    std::thread thr_sensors_recv(nop);
+    threads.push_back(std::move(thr_sensors_recv));
+
+    std::thread thr_bcast_all(nop);
+    threads.push_back(std::move(thr_bcast_all));
+
+    std::thread thr_req_manager(nop);
+    threads.push_back(std::move(thr_req_manager));
+
+    for (unsigned int i = 0; i < threads.size(); i++) {
+        threads[i].join();
+    }
 
     // cleanup
-    syslog(LOG_NOTICE, "stopping lan-weatherd");
+    syslog(LOG_NOTICE, "stopping lanweatherd");
     closelog();
     exit(EXIT_SUCCESS);
 }
