@@ -58,19 +58,19 @@ int main(void) {
     close(STDOUT_FILENO);
     close(STDERR_FILENO);
 
-    std::vector<std::thread> threads;
+    vector<thread> threads;
 
-    std::thread thr_nws_fetch(nop);
-    threads.push_back(std::move(thr_nws_fetch)); // n.b. thread objects can't be copied
+    thread thr_nws_fetch(nop);
+    threads.push_back(move(thr_nws_fetch)); // n.b. thread objects can't be copied
 
-    std::thread thr_sensors_recv(nop);
-    threads.push_back(std::move(thr_sensors_recv));
+    thread thr_sensors_recv(nop);
+    threads.push_back(move(thr_sensors_recv));
 
-    std::thread thr_bcast_all(nop);
-    threads.push_back(std::move(thr_bcast_all));
+    thread thr_bcast_all(nop);
+    threads.push_back(move(thr_bcast_all));
 
-    std::thread thr_req_manager(nop);
-    threads.push_back(std::move(thr_req_manager));
+    thread thr_req_manager(nop);
+    threads.push_back(move(thr_req_manager));
 
     for (unsigned int i = 0; i < threads.size(); i++) {
         threads[i].join();
