@@ -4,74 +4,50 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="4dp">
+    app:cardCornerRadius="4dp"
+    app:cardElevation="10dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/card_day_overview_title"
+            android:id="@+id/card_today_overview_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="12dp"
-            android:text="Today"
+            android:text="@string/today"
             android:textSize="24sp"/>
 
         <RelativeLayout
-            android:id="@+id/card_day_title_divider"
+            android:id="@+id/card_today_title_divider"
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:layout_below="@id/card_day_overview_title"
+            android:layout_below="@id/card_today_overview_title"
             android:layout_marginTop="5dp"
             android:background="@color/gray"/>
 
-        <TextView
-            android:id="@+id/card_day_overview_hour_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/card_day_title_divider"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="15dp"
-            android:text="1:00PM"
-            android:textSize="24sp"/>
-
-        <RelativeLayout
-            android:id="@+id/card_day_content_divider_1"
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_below="@id/card_day_overview_hour_1"
-            android:layout_marginTop="5dp"
-            android:background="@color/gray"/>
+        <ImageView
+            android:id="@+id/card_today_content_icon"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_below="@id/card_today_title_divider"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="23dp"
+            android:layout_marginBottom="15dp"
+            android:src="@drawable/sun"/>
 
         <TextView
-            android:id="@+id/card_day_overview_hour_2"
+            android:id="@+id/card_today_content_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/card_day_content_divider_1"
+            android:layout_below="@id/card_today_title_divider"
+            android:layout_toRightOf="@id/card_today_content_icon"
             android:layout_marginTop="5dp"
-            android:layout_marginLeft="15dp"
-            android:text="2:00PM"
-            android:textSize="24sp"/>
-
-        <RelativeLayout
-            android:id="@+id/card_day_content_divider_2"
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_below="@id/card_day_overview_hour_2"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="15dp"
-            android:background="@color/gray"/>
-
-        <TextView
-            android:id="@+id/card_day_overview_hour_3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/card_day_content_divider_2"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="15dp"
-            android:text="3:00PM"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:text="Sunny today with a few clouds in the afternoon. High of 50ºF."
             android:textSize="24sp"/>
 
     </RelativeLayout>
