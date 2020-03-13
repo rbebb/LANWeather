@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <EditTextPreference
+        app:key="t_shirt"
+        app:title="T-Shirt Temperature"/>
+
+    <EditTextPreference
+        app:key="sweatshirt"
+        app:title="Sweatshirt Temperature"/>
+
+    <EditTextPreference
+        app:key="jacket"
+        app:title="Jacket Temperature"/>
+
+</androidx.preference.PreferenceScreen>

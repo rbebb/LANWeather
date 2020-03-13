@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="4dp"
+    app:cardElevation="10dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/card_hourly_overview_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="12dp"
+            android:text="@string/hourly"
+            android:textSize="24sp"/>
+
+        <RelativeLayout
+            android:id="@+id/card_hourly_title_divider"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_below="@id/card_hourly_overview_title"
+            android:layout_marginTop="5dp"
+            android:background="@color/gray"/>
+
+        <TextView
+            android:id="@+id/card_hourly_overview_hour_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/card_hourly_title_divider"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="15dp"
+            android:text="1:00PM"
+            android:textSize="24sp"/>
+
+        <ImageView
+            android:id="@+id/card_hourly_overview_hour_1_icon"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_below="@id/card_hourly_title_divider"
+            android:layout_marginTop="3dp"
+            android:layout_marginLeft="25dp"
+            android:layout_toRightOf="@id/card_hourly_overview_hour_1"
+            android:src="@drawable/sun"/>
+
+        <TextView
+            android:id="@+id/card_hourly_overview_hour_1_temp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/card_hourly_title_divider"
+            android:layout_toRightOf="@id/card_hourly_overview_hour_1_icon"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="25dp"
+            android:text="50º"
+            android:textSize="24sp"/>
+
+        <RelativeLayout
+            android:id="@+id/card_hourly_content_divider_1"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_below="@id/card_hourly_overview_hour_1"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/gray"/>
+
+        <TextView
+            android:id="@+id/card_hourly_overview_hour_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/card_hourly_content_divider_1"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="15dp"
+            android:text="2:00PM"
+            android:textSize="24sp"/>
+
+        <ImageView
+            android:id="@+id/card_hourly_overview_hour_2_icon"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_below="@id/card_hourly_content_divider_1"
+            android:layout_marginTop="3dp"
+            android:layout_marginLeft="23dp"
+            android:layout_toRightOf="@id/card_hourly_overview_hour_2"
+            android:src="@drawable/sun"/>
+
+        <TextView
+            android:id="@+id/card_hourly_overview_hour_2_temp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/card_hourly_content_divider_1"
+            android:layout_toRightOf="@id/card_hourly_overview_hour_2_icon"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="25dp"
+            android:text="49º"
+            android:textSize="24sp"/>
+
+        <RelativeLayout
+            android:id="@+id/card_hourly_content_divider_2"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_below="@id/card_hourly_overview_hour_2"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/gray"/>
+
+        <TextView
+            android:id="@+id/card_hourly_overview_hour_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/card_hourly_content_divider_2"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="14dp"
+            android:text="3:00PM"
+            android:textSize="24sp"/>
+
+        <ImageView
+            android:id="@+id/card_hourly_overview_hour_3_icon"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_below="@id/card_hourly_content_divider_2"
+            android:layout_marginTop="3dp"
+            android:layout_marginLeft="23dp"
+            android:layout_toRightOf="@id/card_hourly_overview_hour_3"
+            android:src="@drawable/sun"/>
+
+        <TextView
+            android:id="@+id/card_hourly_overview_hour_3_temp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/card_hourly_content_divider_2"
+            android:layout_toRightOf="@id/card_hourly_overview_hour_3_icon"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginBottom="5dp"
+            android:text="50º"
+            android:textSize="24sp"/>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
