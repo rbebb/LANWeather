@@ -2,6 +2,10 @@
 <androidx.preference.PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <EditTextPreference
+        app:key="time"
+        app:title="Notification Time"/>
+
+    <EditTextPreference
         app:key="t_shirt"
         app:title="T-Shirt Temperature"/>
 
