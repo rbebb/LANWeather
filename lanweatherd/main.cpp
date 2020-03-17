@@ -8,6 +8,7 @@
 #include <thread>
 #include <vector>
 
+#include "main.h"
 
 using namespace std;
 
@@ -57,6 +58,9 @@ int main(void) {
     close(STDIN_FILENO);
     close(STDOUT_FILENO);
     close(STDERR_FILENO);
+
+    char* response = nws_req();
+    syslog(LOG_NOTICE, response);
 
     vector<thread> threads;
 

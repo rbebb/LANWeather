@@ -3,3 +3,6 @@ lanweatherd
 
 # object files
 *.o
+
+# rust build
+target/
