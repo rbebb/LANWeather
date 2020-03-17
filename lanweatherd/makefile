@@ -14,11 +14,11 @@ all: $(EXE)
 $(EXE): $(RUSTLIB) $(OBJS)
 	$(LD) $^ $(LDFLAGS) -o $@
 
-%.o: %.cpp
+%.o: src/%.cpp
 	$(CC) $(CCFLAGS) -c $^ -o $@
 
 $(RUSTLIB): src/lib.rs Cargo.toml
 	cargo build
 
 clean:
-	$(RM) -rf *.o $(EXE)
+	$(RM) -rf *.o $(EXE) target/
