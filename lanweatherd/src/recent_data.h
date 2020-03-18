@@ -6,7 +6,6 @@
 
 #ifndef _RECENT_DATA_H_
 #define _RECENT_DATA_H_
-#include <string>
 
 class recent_data {
     public:
