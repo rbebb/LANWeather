@@ -9,6 +9,7 @@
 #include <vector>
 
 #include "main.h"
+#include "recent_data.h"
 
 using namespace std;
 
@@ -61,6 +62,8 @@ int main(void) {
 
     char* response = nws_req();
     syslog(LOG_NOTICE, response);
+
+    recent_data& cache = recent_data::get_instance();
 
     vector<thread> threads;
 

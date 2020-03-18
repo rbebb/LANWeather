@@ -3,7 +3,7 @@ LD = g++
 CCFLAGS = -Wall
 LDFLAGS = -lstdc++ -pthread -L ./target/debug/ -lnws_request
 EXE = lanweatherd
-OBJS = main.o
+OBJS = main.o recent_data.o
 RUSTLIB = target/debug/libnws_request.so
 
 RM = /bin/rm

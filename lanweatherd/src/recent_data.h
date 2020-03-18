@@ -4,7 +4,8 @@
  * http://www.modernescpp.com/index.php/thread-safe-initialization-of-a-singleton
 **/
 
-#pragma once
+#ifndef _RECENT_DATA_H_
+#define _RECENT_DATA_H_
 #include <string>
 
 class recent_data {
@@ -18,4 +19,9 @@ class recent_data {
         recent_data();
         char* nws_data;
         char* sensor_data;
+
+    public: // these are technically implementation i think but can't be out of declaration.
+        recent_data(recent_data const&) = delete;
+        void operator = (recent_data const&) = delete;
 };
+#endif
