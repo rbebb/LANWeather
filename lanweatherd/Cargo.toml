@@ -1,7 +1,7 @@
 [package]
 name = "lanweatherd"
 version = "0.1.0"
-authors = ["Tom Castle <minifigone@gmail.com>"]
+authors = ["Tom Castle <castlet1@wit.edu>"]
 edition = "2018"
 
 [lib]

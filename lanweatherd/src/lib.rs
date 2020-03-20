@@ -10,7 +10,7 @@ pub extern "C" fn nws_req() -> *const c_char { // returns a pointer to a c char 
     let s = call_api().unwrap();
     let p = s.as_ptr(); // get a pointer to the CString
     std::mem::forget(s); // don't have rust free the memory
-    p // return the pointer
+    return p; // return the pointer
 }
 
 fn call_api() -> Result<CString, reqwest::Error> {
