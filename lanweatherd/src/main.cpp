@@ -8,6 +8,9 @@
 #include <thread>
 #include <vector>
 
+#include "main.h"
+#include "recent_data.h"
+#include "nws_loop.h"
 
 using namespace std;
 
@@ -58,9 +61,11 @@ int main(void) {
     close(STDOUT_FILENO);
     close(STDERR_FILENO);
 
+    recent_data& cache = recent_data::get_instance();
+
     vector<thread> threads;
 
-    thread thr_nws_fetch(nop);
+    thread thr_nws_fetch(nws_loop, ref(cache));
     threads.push_back(move(thr_nws_fetch)); // n.b. thread objects can't be copied
 
     thread thr_sensors_recv(nop);
