@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="57dp"
     android:orientation="vertical"
     tools:context=".ui.home.HomeFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="75dp">
 
         <TextView
             android:id="@+id/title"
@@ -30,7 +30,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginTop="15dp"
-            android:src="@drawable/sun"
+            android:src="@drawable/ic_sun"
             app:layout_constraintTop_toBottomOf="@id/title"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -76,6 +76,7 @@
             app:layout_constraintHorizontal_bias=".5"/>
 
         <include
+            android:id="@+id/tomorrow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
@@ -87,6 +88,20 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintHorizontal_bias=".5"/>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="Credit: Icons designed by Freepik from Flaticon"
+            android:textColor="@android:color/white"
+            android:textSize="15sp"
+            app:layout_constraintTop_toBottomOf="@id/tomorrow"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintHorizontal_bias=".5"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</ScrollView>
+</androidx.core.widget.NestedScrollView>
