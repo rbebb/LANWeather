@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="12dp"
-            android:text="@string/today"
+            android:text="@string/tomorrow"
             android:textSize="24sp"/>
 
         <RelativeLayout
@@ -36,7 +36,7 @@
             android:layout_below="@id/card_today_title_divider"
             android:layout_marginTop="15dp"
             android:layout_marginStart="23dp"
-            android:src="@drawable/ic_sun"/>
+            android:src="@drawable/ic_cloudy_day_1"/>
 
         <TextView
             android:id="@+id/card_today_content_text"
@@ -47,7 +47,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginStart="25dp"
             android:layout_marginEnd="25dp"
-            android:text="Sunny today. High of 50ºF."
+            android:text="Partly cloudy tomorrow. High of 48ºF."
             android:textSize="24sp"/>
 
     </RelativeLayout>

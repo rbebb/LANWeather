@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/card_hourly_title_divider"
             android:layout_marginTop="5dp"
-            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
             android:text="1:00PM"
             android:textSize="24sp"/>
 
@@ -44,8 +44,8 @@
             android:layout_height="35dp"
             android:layout_below="@id/card_hourly_title_divider"
             android:layout_marginTop="3dp"
-            android:layout_marginLeft="25dp"
-            android:layout_toRightOf="@id/card_hourly_overview_hour_1"
+            android:layout_marginStart="25dp"
+            android:layout_toEndOf="@id/card_hourly_overview_hour_1"
             android:src="@drawable/ic_sun"/>
 
         <TextView
@@ -53,9 +53,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/card_hourly_title_divider"
-            android:layout_toRightOf="@id/card_hourly_overview_hour_1_icon"
+            android:layout_toEndOf="@id/card_hourly_overview_hour_1_icon"
             android:layout_marginTop="5dp"
-            android:layout_marginLeft="25dp"
+            android:layout_marginStart="25dp"
             android:text="50º"
             android:textSize="24sp"/>
 
@@ -65,8 +65,8 @@
             android:layout_height="2dp"
             android:layout_below="@id/card_hourly_overview_hour_1"
             android:layout_marginTop="5dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:background="@color/gray"/>
 
         <TextView
@@ -75,7 +75,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/card_hourly_content_divider_1"
             android:layout_marginTop="5dp"
-            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
             android:text="2:00PM"
             android:textSize="24sp"/>
 
@@ -85,8 +85,8 @@
             android:layout_height="35dp"
             android:layout_below="@id/card_hourly_content_divider_1"
             android:layout_marginTop="3dp"
-            android:layout_marginLeft="23dp"
-            android:layout_toRightOf="@id/card_hourly_overview_hour_2"
+            android:layout_marginStart="23dp"
+            android:layout_toEndOf="@id/card_hourly_overview_hour_2"
             android:src="@drawable/ic_sun"/>
 
         <TextView
@@ -94,9 +94,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/card_hourly_content_divider_1"
-            android:layout_toRightOf="@id/card_hourly_overview_hour_2_icon"
+            android:layout_toEndOf="@id/card_hourly_overview_hour_2_icon"
             android:layout_marginTop="5dp"
-            android:layout_marginLeft="25dp"
+            android:layout_marginStart="25dp"
             android:text="49º"
             android:textSize="24sp"/>
 
@@ -106,8 +106,8 @@
             android:layout_height="2dp"
             android:layout_below="@id/card_hourly_overview_hour_2"
             android:layout_marginTop="5dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:background="@color/gray"/>
 
         <TextView
@@ -116,7 +116,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/card_hourly_content_divider_2"
             android:layout_marginTop="5dp"
-            android:layout_marginLeft="14dp"
+            android:layout_marginStart="14dp"
             android:text="3:00PM"
             android:textSize="24sp"/>
 
@@ -126,8 +126,8 @@
             android:layout_height="35dp"
             android:layout_below="@id/card_hourly_content_divider_2"
             android:layout_marginTop="3dp"
-            android:layout_marginLeft="23dp"
-            android:layout_toRightOf="@id/card_hourly_overview_hour_3"
+            android:layout_marginStart="23dp"
+            android:layout_toEndOf="@id/card_hourly_overview_hour_3"
             android:src="@drawable/ic_sun"/>
 
         <TextView
@@ -135,9 +135,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/card_hourly_content_divider_2"
-            android:layout_toRightOf="@id/card_hourly_overview_hour_3_icon"
+            android:layout_toEndOf="@id/card_hourly_overview_hour_3_icon"
             android:layout_marginTop="5dp"
-            android:layout_marginLeft="25dp"
+            android:layout_marginStart="25dp"
             android:layout_marginBottom="5dp"
             android:text="50º"
             android:textSize="24sp"/>

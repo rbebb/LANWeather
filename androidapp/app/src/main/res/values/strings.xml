@@ -24,6 +24,7 @@
     <string name="wear_this_insert">Wear a %s today</string>
 
     <!-- General -->
+    <string name="weather">Weather</string>
     <string name="clothing">Clothing</string>
     <string name="t_shirt">t-shirt</string>
     <string name="sweatshirt">sweatshirt</string>
