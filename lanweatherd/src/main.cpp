@@ -11,6 +11,8 @@
 #include "main.h"
 #include "recent_data.h"
 #include "nws_loop.h"
+#include "pub_loop.h"
+#include "rep_loop.h"
 
 using namespace std;
 
@@ -71,10 +73,10 @@ int main(void) {
     thread thr_sensors_recv(nop);
     threads.push_back(move(thr_sensors_recv));
 
-    thread thr_bcast_all(nop);
+    thread thr_bcast_all(pub_loop, ref(cache));
     threads.push_back(move(thr_bcast_all));
 
-    thread thr_req_manager(nop);
+    thread thr_req_manager(rep_loop, ref(cache));
     threads.push_back(move(thr_req_manager));
 
     for (unsigned int i = 0; i < threads.size(); i++) {

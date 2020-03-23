@@ -1,9 +1,9 @@
 CC = g++
 LD = g++
 CCFLAGS = -Wall
-LDFLAGS = -lstdc++ -pthread -L ./target/debug/ -lnws_request
+LDFLAGS = -lstdc++ -pthread -L ./target/debug/ -lnws_request -lzmq
 EXE = lanweatherd
-OBJS = recent_data.o nws_loop.o main.o
+OBJS = recent_data.o nws_loop.o pub_loop.o rep_loop.o main.o
 RUSTLIB = target/debug/libnws_request.so
 
 RM = /bin/rm
@@ -22,3 +22,6 @@ $(RUSTLIB): src/lib.rs Cargo.toml
 
 clean:
 	$(RM) -rf *.o $(EXE) target/
+
+run-debug:
+	LD_LIBRARY_PATH=./target/debug ./lanweatherd
