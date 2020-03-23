@@ -54,6 +54,6 @@ dependencies {
     implementation 'androidx.room:room-ktx:2.2.4' // Kotlin Extensions and Coroutines support for Room
     testImplementation 'androidx.room:room-testing:2.2.4' // Test helpers
 
-    // Moshi translates JSON to Java objects (helpful with Room)
-    implementation 'com.squareup.moshi:moshi:1.9.2'
+    // JeroMQ (Java implementation of ZeroMQ) for connecting to the weather server
+    implementation 'org.zeromq:jeromq:0.5.2'
 }
