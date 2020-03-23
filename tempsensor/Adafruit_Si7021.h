@@ -22,6 +22,8 @@
 #ifndef __Si7021_H__
 #define __Si7021_H__
 
+#include <pigpio.h>
+
 /*!
  *  I2C ADDRESS/BITS
  */
@@ -51,6 +53,44 @@ enum si_sensorType {
   SI_7020,
   SI_7021,
   SI_UNKNOWN,
+};
+
+/*!
+ *  @brief  Class that stores state and functions for interacting with
+ *          Si7021 Sensor
+ */
+class Adafruit_Si7021 {
+ public:
+  Adafruit_Si7021(unsigned int theHandle);
+  bool begin();
+
+  float readTemperature();
+  void reset();
+  void readSerialNumber();
+  float readHumidity();
+
+  /*!
+  *  @brief  Returns sensor revision established during init 
+  *  @return model value
+  */
+  uint8_t getRevision() { return _revision; }; 
+  si_sensorType getModel();
+
+  uint32_t sernum_a; /**< Serialnum A */
+  uint32_t sernum_b; /**< Serialnum B */
+
+
+ private:
+  void _readRevision();
+  si_sensorType _model;
+  uint8_t _revision;
+  uint8_t _readRegister8(uint8_t reg);
+  uint16_t _readRegister16(uint8_t reg);
+  void _writeRegister8(uint8_t reg, uint8_t value);
+
+  int8_t  _i2caddr;
+  //TwoWire *_wire;
+  const static int _TRANSACTION_TIMEOUT = 100; // Wire NAK/Busy timeout in ms
 };
 
 #endif // __Si7021_H__

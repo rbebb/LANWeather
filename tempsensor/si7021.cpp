@@ -5,8 +5,8 @@
 #include <unistd.h>
 
 //Function prototypes
-uint8_t readRegisterByte(unsigned int h, uint8_t reg);
-void readSerialNumber(unsigned int h);
+//uint8_t readRegisterByte(unsigned int h, uint8_t reg);
+//void readSerialNumber(unsigned int h);
 
 int main(){
 
@@ -28,6 +28,31 @@ int main(){
         printf("I2C Status: OK\n");
     }
 
+    Adafruit_Si7021 sensor = Adafruit_Si7021(handle);
+
+    printf("Found model ");
+    switch(sensor.getModel()) {
+        case SI_Engineering_Samples:
+            printf("SI engineering samples"); break;
+        case SI_7013:
+            printf("Si7013"); break;
+        case SI_7020:
+            printf("Si7020"); break;
+        case SI_7021:
+            printf("Si7021"); break;
+        case SI_UNKNOWN:
+        default:
+            printf("Unknown");
+    }
+
+    printf(" Rev(");
+    printf("%d", sensor.getRevision());
+    printf(")");
+    printf(" Serial #"); 
+    printf("%x", sensor.sernum_a); 
+    printf("%x \n", sensor.sernum_b);
+
+    /*
     //Reset the sensor
     if(i2cWriteByte(handle, SI7021_RESET_CMD) != 0){
         printf("Error Resetting Sensor(1)\n");
@@ -41,12 +66,19 @@ int main(){
 
     i2cClose(handle);
     gpioTerminate();
-    
+    */ 
+
+    //---------------------------------------------------------------------------------------------
+    //Work here
+
+    //Type
+
 }
 
 //-------------------------------------------------------------------------------------------------
 //TODO: Document all this later
 
+/*
 uint8_t readRegisterByte(unsigned int h, uint8_t reg){
     uint8_t returnVal;
     i2cWriteByte(h, reg);
@@ -112,3 +144,4 @@ void readSerialNumber(unsigned int h){
     }
 
 }
+*/
