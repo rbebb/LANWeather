@@ -26,23 +26,17 @@ int main(void) {
     // TODO: check for existing instance of the daemon
 
     pid_t pid, sid;
-
-    printf("Step 1 \n");
-
     pid = fork();
 
     if (pid > 0) {
         // it's the parent, it can exit
-        printf("Step 2(Parent) \n");
         exit(EXIT_SUCCESS);
     } else if (pid < 0) {
-        printf("Step 2(Error) \n");
         // there was an error forking, exit
         exit(EXIT_FAILURE);
     }
 
     // the child process continues from here
-    printf("Step 3(Child) \n");
 
     // set default file permissions
     umask(0);
@@ -51,8 +45,6 @@ int main(void) {
     openlog("tempsensor", LOG_NOWAIT | LOG_PID, LOG_USER);
     syslog(LOG_NOTICE, "started Weather Temp/Humid sensor daemon");
 
-    printf("Step 4 \n");
-
     // session id
     sid = setsid();
     if (sid < 0) {
@@ -60,25 +52,20 @@ int main(void) {
         exit(EXIT_FAILURE);
     }
 
-    printf("Step 5 \n");
-
     // move to the filesystem root
     if (chdir("/")) {
         syslog(LOG_ERR, "failed to move to /");
         exit(EXIT_FAILURE);
     }
 
-    //sleep(5);
-
-    printf("Step 6 (That's all folks) \n");
-
-    // close stdin, stdout, stderr
+    // close stdin, stdout, stderr (open rn for debugging)
     //close(STDIN_FILENO);
     //close(STDOUT_FILENO);
     //close(STDERR_FILENO);
 
     //START HERE ----------------------------------------------------------------------------------
 
+    //Really long Serial Port Setup code
     int serial_port = open("/dev/ttyACM0", O_RDWR);
 
     if(serial_port < 0){
@@ -122,21 +109,26 @@ int main(void) {
         printf("Error %i from tcsetattr: %s\n", errno, strerror(errno));
     }
 
-    //Setup a buffer to read to 
-    char read_buf [50];
+    //Setup a read buffer
+    char read_buf [256];
     memset(&read_buf, '\0', sizeof(read_buf));
 
     while(1){
 
-        sleep(.1);
+        //sleep(.1);
+
         //Read from serial_port and store it in the buffer
         int n = read(serial_port, &read_buf, sizeof(read_buf));
 
-        printf("%s\n", read_buf);
+        //Print to stdout if there is new data in the buffer
+        if(n != 0){
+            //printf("Status: %d \n", n);
+            printf("%s", read_buf);
+            printf("\n");
+            printf("\n");
+        }
 
     }
-
-    printf("Ending! \n");
 
     //END HERE-------------------------------------------------------------------------------------
 
