@@ -1,3 +1,94 @@
 {
-  "TODO" : "FILL THIS WITH TEST DATA ONCE WE KNOW WHAT BACKEND IS PASSING AND WHAT IT LOOKS LIKE"
+  "sensor": {
+    "temperature": 0.00, // degrees C, check w/brian
+    "humidity": 0.00, // percent, check w/brian
+  },
+  "nws": {
+    "current": {
+      "temperature": 6.1111111111111427, // degrees C
+      "maxTemperature": 15.5555555555556, // degrees C
+      "minTemperature": 4.4444444444444571, // degrees C
+      "relativeHumidity": 93, // percent
+      "windChill": 2.7777777777777715, // degrees C
+      "windDirection": 119.99999999999999, // angle in degrees
+      "windSpeed": 4.6299960000000002, // meters per second
+      "windGust": 8.2311040000000002, // meters per second
+      "weather": { // items in here may be null
+        "coverage": "definite", // string
+        "weather": "rain_showers", // string
+        "intensity": "light", // string
+        "visibility": 8.0467200000000005 // kilometers
+      },
+      "probabilityOfPrecipitation": 92 // percent
+    },
+    // these forecasts were from before i switched them to si units, so assume si units
+    "daily": {
+      "periods": [ // i'm just copying these directly not removing stuff
+        {
+          "number": 1,
+          "name": "This Afternoon",
+          "startTime": "2020-03-13T17:00:00-04:00",
+          "endTime": "2020-03-13T18:00:00-04:00",
+          "isDaytime": true,
+          "temperature": 60,
+          "temperatureUnit": "F",
+          "temperatureTrend": null,
+          "windSpeed": "16 mph",
+          "windDirection": "W",
+          "icon": "https://api.weather.gov/icons/land/day/rain_showers,30?size=medium",
+          "shortForecast": "Chance Rain Showers",
+          "detailedForecast": "A chance of rain showers. Mostly cloudy, with a high near 60. West wind around 16 mph, with gusts as high as 38 mph. Chance of precipitation is 30%. New rainfall amounts less than a tenth of an inch possible."
+        },
+        {
+          "number": 2,
+          "name": "Tonight",
+          "startTime": "2020-03-13T18:00:00-04:00",
+          "endTime": "2020-03-14T06:00:00-04:00",
+          "isDaytime": false,
+          "temperature": 37,
+          "temperatureUnit": "F",
+          "temperatureTrend": null,
+          "windSpeed": "15 mph",
+          "windDirection": "W",
+          "icon": "https://api.weather.gov/icons/land/night/few?size=medium",
+          "shortForecast": "Mostly Clear",
+          "detailedForecast": "Mostly clear, with a low around 37. West wind around 15 mph, with gusts as high as 36 mph."
+        } // ...(more than just 2 entries in the list)
+      ]
+    },
+    "hourly": {
+      "periods": [ // i'm just copying these directly not removing stuff
+        {
+          "number": 1,
+          "name": "",
+          "startTime": "2020-03-13T17:00:00-04:00",
+          "endTime": "2020-03-13T18:00:00-04:00",
+          "isDaytime": true,
+          "temperature": 56,
+          "temperatureUnit": "F",
+          "temperatureTrend": null,
+          "windSpeed": "16 mph",
+          "windDirection": "W",
+          "icon": "https://api.weather.gov/icons/land/day/rain_showers,30?size=small",
+          "shortForecast": "Chance Rain Showers",
+          "detailedForecast": ""
+        },
+        {
+          "number": 2,
+          "name": "",
+          "startTime": "2020-03-13T18:00:00-04:00",
+          "endTime": "2020-03-13T19:00:00-04:00",
+          "isDaytime": false,
+          "temperature": 53,
+          "temperatureUnit": "F",
+          "temperatureTrend": null,
+          "windSpeed": "15 mph",
+          "windDirection": "W",
+          "icon": "https://api.weather.gov/icons/land/night/bkn?size=small",
+          "shortForecast": "Mostly Cloudy",
+          "detailedForecast": ""
+        } // ... (more than just 2 entries in the list)
+      ]
+    }
+  }
 }

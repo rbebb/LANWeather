@@ -13,7 +13,7 @@ data class DailyForecast(
     val temperature: Int,
     val weather: Int) {
 
-    fun getWeather(): String {
+    fun getTheWeather(): String {
         return when (weather) {
             0 -> "Sunny"
             1 -> "Cloudy"
@@ -24,7 +24,7 @@ data class DailyForecast(
         }
     }
 
-    fun getDay(): String {
+    fun getTheDay(): String {
         return when (day) {
             1 -> "Sunday"
             2 -> "Monday"
