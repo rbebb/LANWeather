@@ -14,7 +14,7 @@ data class HourlyForecast(
     val weather: Int) {
 
     fun getWeather(): String {
-        return when (weather){
+        return when (weather) {
             0 -> "Sunny"
             1 -> "Cloudy"
             2 -> "Partly Cloudy"

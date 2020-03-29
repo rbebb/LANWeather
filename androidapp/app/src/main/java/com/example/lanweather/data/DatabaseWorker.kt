@@ -30,11 +30,11 @@ class DatabaseWorker(
 
                     database.hourlyForecastDao().insertAll(hourlyWeatherList)
 
-                    // Hourly Forecast
+                    // Daily Forecast
                     val dailyWeatherType = object : TypeToken<List<DailyForecast>>() {}.type
-                    val dailyWeatherList: List<HourlyForecast> = Gson().fromJson(jsonReader, dailyWeatherType)
+                    val dailyWeatherList: List<DailyForecast> = Gson().fromJson(jsonReader, dailyWeatherType)
 
-                    database.hourlyForecastDao().insertAll(dailyWeatherList)
+                    database.dailyForecastDao().insertAll(dailyWeatherList)
 
                     Result.success()
                 }
