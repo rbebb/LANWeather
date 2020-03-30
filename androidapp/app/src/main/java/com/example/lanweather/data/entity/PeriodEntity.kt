@@ -1,11 +1,13 @@
-package com.example.lanweather.data
+package com.example.lanweather.data.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
+import com.example.lanweather.data.model.Period
 
 @Entity(tableName = "Periods")
-data class Period(
+data class PeriodEntity(
     @PrimaryKey @ColumnInfo(name = "startTime")
     val startTime: String?,
     @ColumnInfo(name = "number")
@@ -17,7 +19,7 @@ data class Period(
     @ColumnInfo(name = "isDaytime")
     val isDayTime: Boolean?,
     @ColumnInfo(name = "temperature")
-    val temperature: Int,
+    val temperature: Int?,
     @ColumnInfo(name = "temperatureUnit")
     val temperatureUnit: Char?,
     @ColumnInfo(name = "temperatureTrend")
@@ -33,4 +35,21 @@ data class Period(
     @ColumnInfo(name = "detailedForecast")
     val detailedForecast: String?
 ) {
+    @Ignore
+    constructor(period: Period) : this (
+        startTime = period.startTime,
+        number = period.number,
+        name = period.name,
+        endTime = period.endTime,
+        isDayTime = period.isDayTime,
+        temperature = period.temperature,
+        temperatureUnit = period.temperatureUnit,
+        temperatureTrend = period.temperatureTrend,
+        windSpeed = period.windSpeed,
+        windDirection = period.windDirection,
+        icon = period.icon,
+        shortForecast = period.shortForecast,
+        detailedForecast = period.detailedForecast
+    )
+
 }
