@@ -1,6 +1,10 @@
 package com.example.lanweather.data.entity
 
-import androidx.room.*
+import androidx.room.Ignore
+import androidx.room.ColumnInfo
+import androidx.room.Embedded
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.example.lanweather.data.model.Current
 
 @Entity(tableName = "Current")

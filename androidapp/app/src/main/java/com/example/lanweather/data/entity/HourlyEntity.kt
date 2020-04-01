@@ -1,6 +1,9 @@
 package com.example.lanweather.data.entity
 
-import androidx.room.*
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.Ignore
+import androidx.room.PrimaryKey
 import com.example.lanweather.data.model.Hourly
 import com.example.lanweather.data.model.Period
 

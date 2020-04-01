@@ -6,14 +6,20 @@ import android.content.Context
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.Button
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.navigation.findNavController;
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
+import com.example.lanweather.data.AppDatabase
+import com.example.lanweather.data.entity.SensorEntity
+import com.example.lanweather.data.model.Nws
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.squareup.moshi.JsonAdapter
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import java.io.IOException
+import com.squareup.moshi.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -33,7 +39,17 @@ class MainActivity : AppCompatActivity() {
             R.id.navigation_home, R.id.navigation_forecast, R.id.navigation_settings))
 //        setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+        println("testtestestestestestestestestestestesteststestestse")
+        val dataBase = AppDatabase(this)//Room.inMemoryDatabaseBuilder(applicationContext, AppDatabase::class.java).build()
 
+
+        GlobalScope.launch {
+            dataBase.sensorEntityDao().insertSensor(SensorEntity(37.0, 54.0))
+            var data = dataBase.sensorEntityDao().getSensor()
+
+            println(data)
+            println("testtestestestestestestestestestestesteststestestse")
+        }
         // Only used to test notifications
 //        val button: Button = findViewById(R.id.test_notification)
 //        button.setOnClickListener { displayNotification() }
@@ -71,4 +87,16 @@ class MainActivity : AppCompatActivity() {
             notificationManager.createNotificationChannel(channel)
         }
     }
+
+    private fun getJsonFromFile(context: Context, fileName: String): String? {
+        val json: String
+        try {
+            json = context.assets.open(fileName).bufferedReader().use { it.readText() }
+        } catch (ioException: IOException) {
+            ioException.printStackTrace()
+            return null
+        }
+        return json
+    }
+
 }

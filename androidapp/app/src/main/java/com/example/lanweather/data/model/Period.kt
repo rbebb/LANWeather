@@ -16,7 +16,7 @@ data class Period (
     val name: String?,
     @Json(name = "endTime")
     val endTime: String?,
-    @Json(name = "isDayTime")
+    @Json(name = "isDaytime")
     val isDayTime: Boolean?,
     @Json(name = "temperature")
     val temperature: Int?,

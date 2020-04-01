@@ -1,6 +1,10 @@
 package com.example.lanweather.data.dao
 
-import androidx.room.*
+import androidx.room.Transaction
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
 import com.example.lanweather.data.entity.DailyEntity
 
 @Dao
