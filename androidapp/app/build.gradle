@@ -45,8 +45,13 @@ dependencies {
     implementation 'com.google.android.material:material:1.1.0'
     implementation 'androidx.work:work-runtime-ktx:2.3.4'
     implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.squareup.moshi:moshi:1.9.2'
+    implementation 'com.squareup.moshi:moshi-kotlin:1.9.2'
+
+    annotationProcessor 'com.squareup.moshi:moshi-kotlin-codegen:1.9.2'
 
     testImplementation 'junit:junit:4.12'
+    debugImplementation 'com.amitshekhar.android:debug-db:1.0.6'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
@@ -57,5 +62,5 @@ dependencies {
     testImplementation 'androidx.room:room-testing:2.2.5' // Test helpers
 
     // JeroMQ (Java implementation of ZeroMQ) for connecting to the weather server
-    implementation 'org.zeromq:jeromq:0.5.2'
+    //implementation 'org.zeromq:jeromq:0.5.2'
 }

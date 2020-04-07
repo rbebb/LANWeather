@@ -1,8 +1,4 @@
 {
-  "sensor": {
-    "temperature": 0.00,
-    "humidity": 0.00,
-  },
   "nws": {
     "current": {
       "temperature": 6.1111111111111427,
