@@ -43,10 +43,8 @@ char* recent_data::get_data_bundle() {
 }
 
 recent_data::recent_data() {
-    this->nws_data = (char*) malloc(2 * sizeof(char));
-    this->nws_data[0] = 'f';
-    this->nws_data[1] = '\0';
-    this->sensor_data = (char*) malloc(2 * sizeof(char));
-    this->sensor_data[0] = 'f';
-    this->sensor_data[1] = '\0';
+    this->nws_data = (char*) malloc(6 * sizeof(char));
+    strcpy(this->nws_data, "false");
+    this->sensor_data = (char*) malloc(6 * sizeof(char));
+    strcpy(this->sensor_data, "false");
 }
