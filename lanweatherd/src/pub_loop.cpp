@@ -5,8 +5,8 @@
 
 #include "pub_loop.h"
 
-int PUB_PRE_SLEEP_INTERVAL = 60;
-int PUB_SLEEP_INTERVAL = 60 * 59;
+int PUB_PRE_SLEEP_INTERVAL = 60; // publish one minute after starting so there's data
+int PUB_SLEEP_INTERVAL = 60 * 59; // then every hour afterwards
 
 void pub_loop(recent_data& cache) {
     void *context = zmq_ctx_new();

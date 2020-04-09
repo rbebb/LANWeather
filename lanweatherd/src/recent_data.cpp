@@ -30,8 +30,8 @@ void recent_data::update_sensor_data(char* new_data) {
 
 char* recent_data::get_data_bundle() {
     // {\"nws\":%,\"sensor\":%}
-    int len = (strlen(this->nws_data) * sizeof(char)) + (strlen(this->sensor_data) * sizeof(char)) + 19;
-    char* msg = (char*) malloc(len); // 18 is the number of extra characters added
+    int len = (strlen(this->nws_data) * sizeof(char)) + (strlen(this->sensor_data) * sizeof(char)) + 19; // 19 is the number of extra characters added
+    char* msg = (char*) malloc(len);
 
     strcpy(msg, "{\"nws\":");
     strcat(msg, this->nws_data);

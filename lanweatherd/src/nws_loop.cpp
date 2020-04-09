@@ -2,7 +2,7 @@
 
 #include "nws_loop.h"
 
-int NWS_SLEEP_INTERVAL = 60 * 15; // every 15 minutes
+int NWS_SLEEP_INTERVAL = 60 * 20; // every 20 minutes
 
 void nws_loop(recent_data& cache) {
     while (1) {
