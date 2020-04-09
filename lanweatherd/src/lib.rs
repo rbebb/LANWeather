@@ -9,25 +9,25 @@ use json::object;
 pub extern "C" fn nws_req() -> *const c_char { // returns a pointer to a c char array
     let s = call_api().unwrap();
     let p = s.as_ptr(); // get a pointer to the CString
-    std::mem::forget(s); // don't have rust free the memory
+    std::mem::forget(s); // don't have rust free the memory so c can use it
     return p; // return the pointer
 }
 
 fn call_api() -> Result<CString, reqwest::Error> {
-    // TODO: get accurate box
     let client = reqwest::blocking::Client::builder()
-        .user_agent("(lanweather, castlet1@wit.edu")
+        .user_agent("(lanweather, castlet1@wit.edu)")
         .build()?;
-    let current = client.get("https://api.weather.gov/gridpoints/BOX/69,75").send()?.text()?;
-    let dforecast = client.get("https://api.weather.gov/gridpoints/BOX/69,75/forecast?units=si").send()?.text()?;
-    let hforecast = client.get("https://api.weather.gov/gridpoints/BOX/69,75/forecast/hourly?units=si").send()?.text()?;
+    let current = client.get("https://api.weather.gov/gridpoints/BOX/72,51").send()?.text()?;
+    let dforecast = client.get("https://api.weather.gov/gridpoints/BOX/72,51/forecast?units=si").send()?.text()?;
+    let hforecast = client.get("https://api.weather.gov/gridpoints/BOX/72,51/forecast/hourly?units=si").send()?.text()?;
 
-    let parsed_current = json::parse(&current).unwrap();
-    let parsed_dforecast = json::parse(&dforecast).unwrap();
-    let parsed_hforecast = json::parse(&hforecast).unwrap();
+    // some naïve error checking
+    let parsed_current = if current.as_bytes()[0] as char == '{' {json::parse(&current).unwrap()} else {json::parse("{\"bad\": true}").unwrap()};
+    let parsed_dforecast = if dforecast.as_bytes()[0] as char == '{' {json::parse(&dforecast).unwrap()} else {json::parse("{\"bad\": true}").unwrap()};
+    let parsed_hforecast = if hforecast.as_bytes()[0] as char == '{' {json::parse(&hforecast).unwrap()} else {json::parse("{\"bad\": true}").unwrap()};
 
-    // build new json from desired parts of old json
-    let useful = object!{
+    // grab the parts we want
+    let current_values = if !parsed_current.has_key("bad") {object!{
         "current": {
             "temperature": parsed_current["properties"]["temperature"]["values"][0]["value"].clone(),
             "maxTemperature": parsed_current["properties"]["maxTemperature"]["values"][0]["value"].clone(),
@@ -44,15 +44,33 @@ fn call_api() -> Result<CString, reqwest::Error> {
                 "visibility": parsed_current["properties"]["weather"]["values"][0]["value"][0]["visibility"]["value"].clone()
             },
             "probabilityOfPrecipitation": parsed_current["properties"]["probabilityOfPrecipitation"]["values"][0]["value"].clone()
-        },
+        }
+    }} else {object!{
+        "current": false
+    }};
+
+    let daily_values = if !parsed_dforecast.has_key("bad") {object!{
         "daily": {
             "periods": parsed_dforecast["properties"]["periods"].clone()
-        },
+        }
+    }} else {object!{
+        "daily": false
+    }};
+
+    let hourly_values = if !parsed_hforecast.has_key("bad") {object!{
         "hourly": {
             "periods": parsed_hforecast["properties"]["periods"].clone()
         }
-    };
+    }} else {object!{
+        "hourly": false
+    }};
 
-    let s = CString::new(useful.dump()).unwrap();
+    // package everything into one object
+    let mut package = json::JsonValue::new_object();
+    package.insert("current", current_values["current"].clone());
+    package.insert("hourly", hourly_values["hourly"].clone());
+    package.insert("daily", daily_values["daily"].clone());
+
+    let s = CString::new(package.dump()).unwrap();
     return Ok(s);
 }
