@@ -124,17 +124,7 @@ int main(void) {
     memset(&temp_buf, '\0', sizeof(temp_buf));
 
     //Other variable setup
-    double humid = -1.0;
-    double temp = -1.0;
     int count = 0;
-
-    //TESTING AREA START
-    double x = -1.0;
-    char my_buf[] = {'3', '4', '.', '5', '7', '\0'};
-    printf("Test1 atof: %f\n", x);
-    x = atof(my_buf);
-    printf("Test2 atof: %f\n", x);
-    //TESTING AREA END
 
     while(true){
 
@@ -142,9 +132,7 @@ int main(void) {
 
         for(int i=0;i<n;i++){
             if(read_buf[i]=='\n'){
-                //Placeholder char arrays for temp & humid values
-                //memcpy(humid_buf, &line_buf[13], sizeof(humid_buf)-sizeof(char));
-                //memcpy(temp_buf, &line_buf[32], sizeof(temp_buf)-sizeof(char));
+                //Copy data into individual char arrays
                 for(int j=0;j<5;j++){
                     humid_buf[j] = line_buf[13+j];
                     temp_buf[j] = line_buf[32+j];
@@ -152,26 +140,15 @@ int main(void) {
                 humid_buf[6] = '\0';
                 temp_buf[6] = '\0';
 
-                //TESTING print buffer values
-                //printf("Test H Char: %c \n", line_buf[13]);
-                //printf("Test T Char: %c \n", line_buf[32]);
-                printf("Test H Buffer: \"%s\" \n", humid_buf);
-                printf("Test T Buffer: \"%s\" \n", temp_buf);
-
-                //Convert char arrays to doubles
-                humid = atof(humid_buf);
-                temp = atof(temp_buf);
-
-                //TESTING print test values
-                printf("H: \"%d\"\n", humid);
-                printf("T: \"%d\"\n", temp);
+                //Print buffer values (Will be removed when )
+                printf("Humid Buffer: \"%s\" \n", humid_buf);
+                printf("Temp Buffer: \"%s\" \n", temp_buf);
 
                 //Reset line_buf after we read the end of the line
                 count = 0;
                 memset(&line_buf, '\0', sizeof(line_buf));
             }
             else{
-                //printf("Count: %d", count);
                 line_buf[count] = read_buf[i];
                 count++;
             }
