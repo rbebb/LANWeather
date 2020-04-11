@@ -5,9 +5,8 @@ Description=LANWeather Coordinator Service
 [Service]
 Type=forking
 PIDFile=/var/run/lanweatherd.pid
-#ExecStartPre=/sbin/ldconfig
 ExecStart=/usr/sbin/lanweatherd
-Restart=on-failure
+Restart=always
 User=root
 Group=root
 
