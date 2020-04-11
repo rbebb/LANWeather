@@ -1,11 +1,8 @@
 # workspace
 .vscode/
 
-# executable
-lanweatherd
-
-# object files
-*.o
+# c++ build
+build/
 
 # rust build
 target/
