@@ -48,6 +48,7 @@ int main(void) {
         exit(EXIT_SUCCESS);
     } else if (pid < 0) {
         // there was an error forking, exit
+        printf("error forking\n");
         exit(EXIT_FAILURE);
     }
 
