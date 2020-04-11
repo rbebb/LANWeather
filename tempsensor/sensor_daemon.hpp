@@ -1,0 +1,1 @@
+int *nop(void);
