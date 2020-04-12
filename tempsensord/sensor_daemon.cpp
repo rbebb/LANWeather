@@ -1,7 +1,8 @@
 #include <cstdlib>
 #include <cstring>
 #include <stdlib.h>
-#include <string>
+#include <string.h>
+#include <cstring>
 #include <unistd.h>
 #include <sys/stat.h>
 #include <syslog.h>
@@ -11,8 +12,7 @@
 #include <errno.h>
 #include <termios.h>
 #include <unistd.h>
-
-//#include "libs/SerialPort-master/include/SerialPort.hpp"
+#include <zmq.h>
 
 using namespace std;
 
@@ -58,17 +58,15 @@ int main(void) {
     }
 
     // close stdin, stdout, stderr (open rn for debugging)
-    //close(STDIN_FILENO);
-    //close(STDOUT_FILENO);
-    //close(STDERR_FILENO);
-
-    //START HERE ----------------------------------------------------------------------------------
+    close(STDIN_FILENO);
+    close(STDOUT_FILENO);
+    close(STDERR_FILENO);
 
     //Really long Serial Port Setup code
     int serial_port = open("/dev/ttyACM0", O_RDWR);
 
     if(serial_port < 0){
-        printf("Error %i from open %s \n", errno, strerror(errno));
+        syslog(LOG_ERR, "Error %i from open %s \n", errno, strerror(errno));
         exit(EXIT_FAILURE);
     }
 
@@ -77,7 +75,8 @@ int main(void) {
     memset(&tty, 0, sizeof tty);
 
     if(tcgetattr(serial_port, &tty) != 0){
-        printf("Error %i from tcgetattr: %s \n", errno, strerror(errno));
+        syslog(LOG_ERR, "Error %i from tcgetattr: %s \n", errno, strerror(errno));
+        exit(EXIT_FAILURE);
     }
 
     tty.c_cflag &= ~PARENB;
@@ -105,7 +104,8 @@ int main(void) {
     cfsetospeed(&tty, B115200);
 
     if (tcsetattr(serial_port, TCSANOW, &tty) != 0) {
-        printf("Error %i from tcsetattr: %s\n", errno, strerror(errno));
+        syslog(LOG_ERR, "Error %i from tcsetattr: %s\n", errno, strerror(errno));
+        exit(EXIT_FAILURE);
     }
 
     //Setup a read buffer
@@ -125,6 +125,15 @@ int main(void) {
     //Other variable setup
     int count = 0;
 
+    //Setup ZMQ connection to server
+    void *context = zmq_ctx_new();
+    void *responder = zmq_socket(context, ZMQ_REP);
+    zmq_bind(responder, "tcp://lw.minifigone.com:5675");
+
+    //Setup json message
+    char msg [64];
+    int msg_len = 0;
+
     while(true){
 
         int n = read(serial_port, &read_buf, sizeof(read_buf));
@@ -139,13 +148,25 @@ int main(void) {
                 humid_buf[6] = '\0';
                 temp_buf[6] = '\0';
 
+                //Update json message
+                strcpy(msg, "{\"temperature\":");
+                strcat(msg, temp_buf);
+                strcat(msg, ",\"humidity\":");
+                strcat(msg, humid_buf);
+                strcat(msg, "}\0");
+                msg_len = strlen(msg);
+
                 //Print buffer values (Will be removed when )
-                printf("Humid Buffer: \"%s\" \n", humid_buf);
-                printf("Temp Buffer: \"%s\" \n", temp_buf);
+                //printf("Humid Buffer: \"%s\" \n", humid_buf);
+                //printf("Temp Buffer: \"%s\" \n", temp_buf);
+
+                //Send update over ZMQ to server
+                zmq_send(responder, msg, msg_len, 0);
 
                 //Reset line_buf after we read the end of the line
                 count = 0;
                 memset(&line_buf, '\0', sizeof(line_buf));
+                memset(&msg, '\0', sizeof(msg));
             }
             else{
                 line_buf[count] = read_buf[i];
@@ -156,9 +177,9 @@ int main(void) {
         memset(&read_buf, '\0', sizeof(read_buf));
     }
 
-    //END HERE-------------------------------------------------------------------------------------
-
     // cleanup
+    zmq_close(responder);
+    zmq_ctx_destroy(context);
     close(serial_port);
     syslog(LOG_NOTICE, "stopping tempsensor");
     closelog();
