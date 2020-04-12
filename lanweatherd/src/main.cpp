@@ -15,6 +15,7 @@
 #include "nws_loop.h"
 #include "pub_loop.h"
 #include "rep_loop.h"
+#include "sensor_loop.h"
 
 using namespace std;
 
@@ -86,7 +87,7 @@ int main(void) {
     thread thr_nws_fetch(nws_loop, ref(cache));
     threads.push_back(move(thr_nws_fetch)); // n.b. thread objects can't be copied
 
-    thread thr_sensors_recv(nop);
+    thread thr_sensors_recv(sensor_loop, ref(cache));
     threads.push_back(move(thr_sensors_recv));
 
     thread thr_bcast_all(pub_loop, ref(cache));
