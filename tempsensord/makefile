@@ -1,7 +1,7 @@
 CC = g++
 LD = g++
 CCFLAGS = -Wall
-LDFLAGS = -lstdc++ -pthread -L ./target/debug/
+LDFLAGS = -lstdc++ -pthread -L ./target/debug/ -lzmq
 EXE = tempsensord
 OBJS = sensor_daemon.o
 

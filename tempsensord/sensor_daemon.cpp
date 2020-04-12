@@ -1,7 +1,8 @@
 #include <cstdlib>
 #include <cstring>
 #include <stdlib.h>
-#include <string>
+#include <string.h>
+#include <cstring>
 #include <unistd.h>
 #include <sys/stat.h>
 #include <syslog.h>
@@ -153,7 +154,7 @@ int main(void) {
                 strcat(msg, ",\"humidity\":");
                 strcat(msg, humid_buf);
                 strcat(msg, "}\0");
-                msg_len = srtlen(msg);
+                msg_len = strlen(msg);
 
                 //Print buffer values (Will be removed when )
                 //printf("Humid Buffer: \"%s\" \n", humid_buf);
