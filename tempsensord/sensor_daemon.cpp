@@ -127,12 +127,13 @@ int main(void) {
 
     //Setup ZMQ connection to server
     void *context = zmq_ctx_new();
-    void *responder = zmq_socket(context, ZMQ_REP);
-    zmq_bind(responder, "tcp://lw.minifigone.com:5675");
+    void *responder = zmq_socket(context, ZMQ_PUB);
+    zmq_connect(responder, "tcp://lw.minifigone.com:5676");
 
     //Setup json message
     char msg [64];
     int msg_len = 0;
+    int zmq_ret_val = 1337;
 
     while(true){
 
@@ -156,12 +157,11 @@ int main(void) {
                 strcat(msg, "}\0");
                 msg_len = strlen(msg);
 
-                //Print buffer values (Will be removed when )
-                //printf("Humid Buffer: \"%s\" \n", humid_buf);
-                //printf("Temp Buffer: \"%s\" \n", temp_buf);
-
                 //Send update over ZMQ to server
-                zmq_send(responder, msg, msg_len, 0);
+                zmq_ret_val = zmq_send(responder, msg, msg_len, 0);
+                //printf("ZMQ Send Value: %d\n", zmq_ret_val);
+                //printf("Error Number: %s\n", strerror(errno));
+                //printf("Json Message: %s\n\n", msg);
 
                 //Reset line_buf after we read the end of the line
                 count = 0;
