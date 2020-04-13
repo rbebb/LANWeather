@@ -13,7 +13,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.example.lanweather.data.AppDatabase
 import com.example.lanweather.data.entity.SensorEntity
-import com.example.lanweather.data.model.Nws
+import com.example.lanweather.zmq.zmq
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.squareup.moshi.JsonAdapter
 import kotlinx.coroutines.GlobalScope
@@ -40,6 +40,8 @@ class MainActivity : AppCompatActivity() {
 //        setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
         println("testtestestestestestestestestestestesteststestestse")
+        val startData = zmq.getData();
+        println("BLAH$startData")
         val dataBase = AppDatabase(this)//Room.inMemoryDatabaseBuilder(applicationContext, AppDatabase::class.java).build()
 
 

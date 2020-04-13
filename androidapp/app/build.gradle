@@ -62,5 +62,5 @@ dependencies {
     testImplementation 'androidx.room:room-testing:2.2.5' // Test helpers
 
     // JeroMQ (Java implementation of ZeroMQ) for connecting to the weather server
-    //implementation 'org.zeromq:jeromq:0.5.2'
+    implementation 'org.zeromq:jeromq:0.5.2'
 }
