@@ -1,6 +1,5 @@
 [Unit]
 Description=LANWeather Coordinator Service
-#After=network.target
 
 [Service]
 Type=forking
@@ -9,6 +8,7 @@ ExecStart=/usr/sbin/lanweatherd
 Restart=always
 User=root
 Group=root
+RestartSec=5
 
 [Install]
 WantedBy=multi-user.target
