@@ -14,9 +14,7 @@ void sensor_loop(recent_data& cache){
     while(1) {
         char* buffer = (char*) malloc(64 * sizeof(char));
         zmq_recv(sock, buffer, 63, 0);
-        syslog(LOG_NOTICE, "|%s|", buffer);
         cache.update_sensor_data(buffer);
-        free(buffer);
     }
 
     zmq_close(sock);
