@@ -7,6 +7,8 @@
 #include <syslog.h>
 #include <thread>
 #include <vector>
+#include <stdio.h>
+#include <fcntl.h>
 
 #include "main.h"
 #include "recent_data.h"
@@ -30,10 +32,24 @@ int main(void) {
     pid = fork();
 
     if (pid > 0) {
-        // it's the parent, it can exit
+        // it's the parent, write the pidfile and exit
+        int pidfile;
+
+        if ((pidfile = open("/var/run/lanweatherd.pid", O_WRONLY|O_CREAT|O_TRUNC, 0644)) == -1) {
+            // if not launched as root, print pid to the terminal
+            close(pidfile);
+            printf("%d\n", pid);
+            exit(EXIT_SUCCESS);
+        }
+
+        char pidstring[16];
+        sprintf(pidstring, "%d", pid);
+        write(pidfile, pidstring, strlen(pidstring));
+
         exit(EXIT_SUCCESS);
     } else if (pid < 0) {
         // there was an error forking, exit
+        printf("error forking\n");
         exit(EXIT_FAILURE);
     }
 

@@ -1,0 +1,14 @@
+[Unit]
+Description=LANWeather Coordinator Service
+
+[Service]
+Type=forking
+PIDFile=/var/run/lanweatherd.pid
+ExecStart=/usr/sbin/lanweatherd
+Restart=always
+User=root
+Group=root
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
