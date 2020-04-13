@@ -59,7 +59,7 @@ int main(void) {
 
     // close stdin, stdout, stderr (open rn for debugging)
     close(STDIN_FILENO);
-    //close(STDOUT_FILENO);
+    close(STDOUT_FILENO);
     close(STDERR_FILENO);
 
     //Really long Serial Port Setup code
