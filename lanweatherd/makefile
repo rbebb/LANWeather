@@ -22,8 +22,8 @@ cdo-dir = $(cxx-build-dir)$(debug-dir)$(objects-dir)
 cro-dir = $(cxx-build-dir)$(release-dir)$(objects-dir)
 
 lib = libnws_request.so
-debug-objects = $(cdo-dir)recent_data.o $(cdo-dir)nws_loop.o $(cdo-dir)pub_loop.o $(cdo-dir)rep_loop.o $(cdo-dir)main.o
-release-objects = $(cro-dir)recent_data.o $(cro-dir)nws_loop.o $(cro-dir)pub_loop.o $(cro-dir)rep_loop.o $(cro-dir)main.o
+debug-objects = $(cdo-dir)recent_data.o $(cdo-dir)nws_loop.o $(cdo-dir)pub_loop.o $(cdo-dir)rep_loop.o $(cdo-dir)sensor_loop.o $(cdo-dir)main.o
+release-objects = $(cro-dir)recent_data.o $(cro-dir)nws_loop.o $(cro-dir)pub_loop.o $(cro-dir)rep_loop.o $(cro-dir)sensor_loop.o $(cro-dir)main.o
 executable = lanweatherd
 
 build-debug: $(rust-build-dir)$(debug-dir)$(lib) $(debug-objects)
