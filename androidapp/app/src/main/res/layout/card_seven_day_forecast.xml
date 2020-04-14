@@ -12,7 +12,7 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/card_hourly_overview_title"
+            android:id="@+id/card_forecast_overview_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -21,121 +21,121 @@
             android:textSize="24sp"/>
 
         <RelativeLayout
-            android:id="@+id/card_hourly_title_divider"
+            android:id="@+id/card_forecast_title_divider"
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:layout_below="@id/card_hourly_overview_title"
+            android:layout_below="@id/card_forecast_overview_title"
             android:layout_marginTop="5dp"
             android:background="@color/gray"/>
 
         <TextView
-            android:id="@+id/card_hourly_overview_hour_1"
+            android:id="@+id/card_forecast_overview_day_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/card_hourly_title_divider"
+            android:layout_below="@id/card_forecast_title_divider"
             android:layout_marginTop="5dp"
             android:layout_marginStart="15dp"
             android:text="Monday"
             android:textSize="24sp"/>
 
         <ImageView
-            android:id="@+id/card_hourly_overview_hour_1_icon"
+            android:id="@+id/card_forecast_overview_day_1_icon"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:layout_below="@id/card_hourly_title_divider"
+            android:layout_below="@id/card_forecast_title_divider"
             android:layout_marginTop="3dp"
             android:layout_marginStart="54dp"
-            android:layout_toEndOf="@id/card_hourly_overview_hour_1"
+            android:layout_toEndOf="@id/card_forecast_overview_day_1"
             android:src="@drawable/ic_sun"/>
 
         <TextView
-            android:id="@+id/card_hourly_overview_hour_1_temp"
+            android:id="@+id/card_forecast_overview_day_1_temp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/card_hourly_title_divider"
-            android:layout_toEndOf="@id/card_hourly_overview_hour_1_icon"
+            android:layout_below="@id/card_forecast_title_divider"
+            android:layout_toEndOf="@id/card_forecast_overview_day_1_icon"
             android:layout_marginTop="5dp"
             android:layout_marginStart="25dp"
             android:text="50º"
             android:textSize="24sp"/>
 
         <RelativeLayout
-            android:id="@+id/card_hourly_content_divider_1"
+            android:id="@+id/card_forecast_content_divider_1"
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:layout_below="@id/card_hourly_overview_hour_1"
+            android:layout_below="@id/card_forecast_overview_day_1"
             android:layout_marginTop="5dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:background="@color/gray"/>
 
         <TextView
-            android:id="@+id/card_hourly_overview_hour_2"
+            android:id="@+id/card_forecast_overview_day_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/card_hourly_content_divider_1"
+            android:layout_below="@id/card_forecast_content_divider_1"
             android:layout_marginTop="5dp"
             android:layout_marginStart="15dp"
             android:text="Tuesday"
             android:textSize="24sp"/>
 
         <ImageView
-            android:id="@+id/card_hourly_overview_hour_2_icon"
+            android:id="@+id/card_forecast_overview_day_2_icon"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:layout_below="@id/card_hourly_content_divider_1"
+            android:layout_below="@id/card_forecast_content_divider_1"
             android:layout_marginTop="3dp"
             android:layout_marginStart="51dp"
-            android:layout_toEndOf="@id/card_hourly_overview_hour_2"
+            android:layout_toEndOf="@id/card_forecast_overview_day_2"
             android:src="@drawable/ic_sun"/>
 
         <TextView
-            android:id="@+id/card_hourly_overview_hour_2_temp"
+            android:id="@+id/card_forecast_overview_day_2_temp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/card_hourly_content_divider_1"
-            android:layout_toEndOf="@id/card_hourly_overview_hour_2_icon"
+            android:layout_below="@id/card_forecast_content_divider_1"
+            android:layout_toEndOf="@id/card_forecast_overview_day_2_icon"
             android:layout_marginTop="5dp"
             android:layout_marginStart="25dp"
             android:text="49º"
             android:textSize="24sp"/>
 
         <RelativeLayout
-            android:id="@+id/card_hourly_content_divider_2"
+            android:id="@+id/card_forecast_content_divider_2"
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:layout_below="@id/card_hourly_overview_hour_2"
+            android:layout_below="@id/card_forecast_overview_day_2"
             android:layout_marginTop="5dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:background="@color/gray"/>
 
         <TextView
-            android:id="@+id/card_hourly_overview_hour_3"
+            android:id="@+id/card_forecast_overview_day_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/card_hourly_content_divider_2"
+            android:layout_below="@id/card_forecast_content_divider_2"
             android:layout_marginTop="5dp"
             android:layout_marginStart="14dp"
             android:text="Wednesday"
             android:textSize="24sp"/>
 
         <ImageView
-            android:id="@+id/card_hourly_overview_hour_3_icon"
+            android:id="@+id/card_forecast_overview_day_3_icon"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:layout_below="@id/card_hourly_content_divider_2"
+            android:layout_below="@id/card_forecast_content_divider_2"
             android:layout_marginTop="3dp"
             android:layout_marginStart="23dp"
-            android:layout_toEndOf="@id/card_hourly_overview_hour_3"
+            android:layout_toEndOf="@id/card_forecast_overview_day_3"
             android:src="@drawable/ic_sun"/>
 
         <TextView
-            android:id="@+id/card_hourly_overview_hour_3_temp"
+            android:id="@+id/card_forecast_overview_day_3_temp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/card_hourly_content_divider_2"
-            android:layout_toEndOf="@id/card_hourly_overview_hour_3_icon"
+            android:layout_below="@id/card_forecast_content_divider_2"
+            android:layout_toEndOf="@id/card_forecast_overview_day_3_icon"
             android:layout_marginTop="5dp"
             android:layout_marginStart="25dp"
             android:layout_marginBottom="5dp"
@@ -143,41 +143,41 @@
             android:textSize="24sp"/>
 
         <RelativeLayout
-            android:id="@+id/card_hourly_content_divider_3"
+            android:id="@+id/card_forecast_content_divider_3"
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:layout_below="@id/card_hourly_overview_hour_3"
+            android:layout_below="@id/card_forecast_overview_day_3"
             android:layout_marginTop="5dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:background="@color/gray"/>
 
         <TextView
-            android:id="@+id/card_hourly_overview_hour_4"
+            android:id="@+id/card_forecast_overview_day_4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/card_hourly_content_divider_3"
+            android:layout_below="@id/card_forecast_content_divider_3"
             android:layout_marginTop="5dp"
             android:layout_marginStart="14dp"
             android:text="Thursday"
             android:textSize="24sp"/>
 
         <ImageView
-            android:id="@+id/card_hourly_overview_hour_4_icon"
+            android:id="@+id/card_forecast_overview_day_4_icon"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:layout_below="@id/card_hourly_content_divider_3"
+            android:layout_below="@id/card_forecast_content_divider_3"
             android:layout_marginTop="3dp"
             android:layout_marginStart="42dp"
-            android:layout_toEndOf="@id/card_hourly_overview_hour_4"
+            android:layout_toEndOf="@id/card_forecast_overview_day_4"
             android:src="@drawable/ic_sun"/>
 
         <TextView
-            android:id="@+id/card_hourly_overview_hour_4_temp"
+            android:id="@+id/card_forecast_overview_day_4_temp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/card_hourly_content_divider_3"
-            android:layout_toEndOf="@id/card_hourly_overview_hour_4_icon"
+            android:layout_below="@id/card_forecast_content_divider_3"
+            android:layout_toEndOf="@id/card_forecast_overview_day_4_icon"
             android:layout_marginTop="5dp"
             android:layout_marginStart="25dp"
             android:layout_marginBottom="5dp"
@@ -185,41 +185,41 @@
             android:textSize="24sp"/>
 
         <RelativeLayout
-            android:id="@+id/card_hourly_content_divider_4"
+            android:id="@+id/card_forecast_content_divider_4"
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:layout_below="@id/card_hourly_overview_hour_4"
+            android:layout_below="@id/card_forecast_overview_day_4"
             android:layout_marginTop="5dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:background="@color/gray"/>
 
         <TextView
-            android:id="@+id/card_hourly_overview_hour_5"
+            android:id="@+id/card_forecast_overview_day_5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/card_hourly_content_divider_4"
+            android:layout_below="@id/card_forecast_content_divider_4"
             android:layout_marginTop="5dp"
             android:layout_marginStart="14dp"
             android:text="Friday"
             android:textSize="24sp"/>
 
         <ImageView
-            android:id="@+id/card_hourly_overview_hour_5_icon"
+            android:id="@+id/card_forecast_overview_day_5_icon"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:layout_below="@id/card_hourly_content_divider_4"
+            android:layout_below="@id/card_forecast_content_divider_4"
             android:layout_marginTop="3dp"
             android:layout_marginStart="69dp"
-            android:layout_toEndOf="@id/card_hourly_overview_hour_5"
+            android:layout_toEndOf="@id/card_forecast_overview_day_5"
             android:src="@drawable/ic_sun"/>
 
         <TextView
-            android:id="@+id/card_hourly_overview_hour_5_temp"
+            android:id="@+id/card_forecast_overview_day_5_temp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/card_hourly_content_divider_4"
-            android:layout_toEndOf="@id/card_hourly_overview_hour_5_icon"
+            android:layout_below="@id/card_forecast_content_divider_4"
+            android:layout_toEndOf="@id/card_forecast_overview_day_5_icon"
             android:layout_marginTop="5dp"
             android:layout_marginStart="25dp"
             android:layout_marginBottom="5dp"
@@ -227,41 +227,41 @@
             android:textSize="24sp"/>
 
         <RelativeLayout
-            android:id="@+id/card_hourly_content_divider_5"
+            android:id="@+id/card_forecast_content_divider_5"
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:layout_below="@id/card_hourly_overview_hour_5"
+            android:layout_below="@id/card_forecast_overview_day_5"
             android:layout_marginTop="5dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:background="@color/gray"/>
 
         <TextView
-            android:id="@+id/card_hourly_overview_hour_6"
+            android:id="@+id/card_forecast_overview_day_6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/card_hourly_content_divider_5"
+            android:layout_below="@id/card_forecast_content_divider_5"
             android:layout_marginTop="5dp"
             android:layout_marginStart="14dp"
             android:text="Saturday"
             android:textSize="24sp"/>
 
         <ImageView
-            android:id="@+id/card_hourly_overview_hour_6_icon"
+            android:id="@+id/card_forecast_overview_day_6_icon"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:layout_below="@id/card_hourly_content_divider_5"
+            android:layout_below="@id/card_forecast_content_divider_5"
             android:layout_marginTop="3dp"
             android:layout_marginStart="44dp"
-            android:layout_toEndOf="@id/card_hourly_overview_hour_6"
+            android:layout_toEndOf="@id/card_forecast_overview_day_6"
             android:src="@drawable/ic_sun"/>
 
         <TextView
-            android:id="@+id/card_hourly_overview_hour_6_temp"
+            android:id="@+id/card_forecast_overview_day_6_temp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/card_hourly_content_divider_5"
-            android:layout_toEndOf="@id/card_hourly_overview_hour_6_icon"
+            android:layout_below="@id/card_forecast_content_divider_5"
+            android:layout_toEndOf="@id/card_forecast_overview_day_6_icon"
             android:layout_marginTop="5dp"
             android:layout_marginStart="25dp"
             android:layout_marginBottom="5dp"
@@ -269,41 +269,41 @@
             android:textSize="24sp"/>
 
         <RelativeLayout
-            android:id="@+id/card_hourly_content_divider_6"
+            android:id="@+id/card_forecast_content_divider_6"
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:layout_below="@id/card_hourly_overview_hour_6"
+            android:layout_below="@id/card_forecast_overview_day_6"
             android:layout_marginTop="5dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:background="@color/gray"/>
 
         <TextView
-            android:id="@+id/card_hourly_overview_hour_7"
+            android:id="@+id/card_forecast_overview_day_7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/card_hourly_content_divider_6"
+            android:layout_below="@id/card_forecast_content_divider_6"
             android:layout_marginTop="5dp"
             android:layout_marginStart="14dp"
             android:text="Sunday"
             android:textSize="24sp"/>
 
         <ImageView
-            android:id="@+id/card_hourly_overview_hour_7_icon"
+            android:id="@+id/card_forecast_overview_day_7_icon"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:layout_below="@id/card_hourly_content_divider_6"
+            android:layout_below="@id/card_forecast_content_divider_6"
             android:layout_marginTop="3dp"
             android:layout_marginStart="59dp"
-            android:layout_toEndOf="@id/card_hourly_overview_hour_7"
+            android:layout_toEndOf="@id/card_forecast_overview_day_7"
             android:src="@drawable/ic_sun"/>
 
         <TextView
-            android:id="@+id/card_hourly_overview_hour_7_temp"
+            android:id="@+id/card_forecast_overview_day_7_temp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/card_hourly_content_divider_6"
-            android:layout_toEndOf="@id/card_hourly_overview_hour_7_icon"
+            android:layout_below="@id/card_forecast_content_divider_6"
+            android:layout_toEndOf="@id/card_forecast_overview_day_7_icon"
             android:layout_marginTop="5dp"
             android:layout_marginStart="25dp"
             android:layout_marginBottom="5dp"

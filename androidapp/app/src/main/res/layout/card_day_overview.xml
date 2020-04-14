@@ -47,7 +47,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginStart="25dp"
             android:layout_marginEnd="25dp"
-            android:text="Sunny today. High of 50ºF."
+            android:text="@string/today_details"
             android:textSize="24sp"/>
 
     </RelativeLayout>

@@ -7,7 +7,7 @@
     <string name="settings">Settings</string>
 
     <!-- Home -->
-    <string name="home_overview">Humidity: 38%\nWind: 14mph NNW\nWind Chill: 39º</string>
+    <string name="home_overview">Humidity: %.0f%%%nWind: 1mph SW%nCurrent: %.0fºF</string>
     <string name="hourly">Hourly</string>
 
     <!-- Forecast -->
@@ -22,6 +22,12 @@
     <string name="channel_name">All Notifications</string>
     <string name="channel_description">All notifications</string>
     <string name="wear_this_insert">Wear a %s today</string>
+
+    <!-- Today -->
+    <string name="today_details">%s today. High of %.0fºF.</string>
+
+    <!-- Tomorrow -->
+    <string name="tomorrow_details">%s tomorrow. High of %.0fºF.</string>
 
     <!-- General -->
     <string name="weather">Weather</string>

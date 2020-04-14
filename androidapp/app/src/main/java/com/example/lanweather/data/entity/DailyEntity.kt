@@ -10,13 +10,13 @@ import com.example.lanweather.data.model.Period
 @Entity(tableName = "Daily")
 data class DailyEntity (
     //@Embedded
-    //val period: PeriodEntity?
+    //val periods: PeriodEntity?
     @PrimaryKey
-    @ColumnInfo(name = "period")
-    val period: List<Period>
+    @ColumnInfo(name = "periods")
+    val periods: List<Period>
 ){
     @Ignore
     constructor(daily: Daily) : this (
-        period = daily.period
+        periods = daily.periods
     )
 }

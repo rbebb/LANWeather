@@ -10,26 +10,26 @@ import com.example.lanweather.data.model.Current
 @Entity(tableName = "Current")
 data class CurrentEntity (
     @ColumnInfo(name = "temperature")
-    val temperature: Double?,
+    val temperature: Double? = 0.0,
     @ColumnInfo(name = "maxTemperature")
-    val maxTemperature: Double?,
+    val maxTemperature: Double? = 0.0,
     @ColumnInfo(name = "minTemperature")
-    val minTemperature: Double?,
+    val minTemperature: Double? = 0.0,
     @ColumnInfo(name = "relativeHumidity")
-    val relativeHumidity: Int?,
+    val relativeHumidity: Int? = 0,
     @ColumnInfo(name = "windChill")
-    val windChill: Double?,
+    val windChill: Double?  = 0.0,
     @ColumnInfo(name = "windDirection")
-    val windDirection: Double?,
+    val windDirection: Double?  = 0.0,
     @PrimaryKey
     @ColumnInfo(name = "windSpeed")
-    val windSpeed: Double,
+    val windSpeed: Double = 0.0,
     @ColumnInfo(name = "windGust")
-    val windGust: Double?,
+    val windGust: Double? = 0.0,
     @Embedded
     val weather: WeatherEntity?,
     @ColumnInfo(name = "probabilityOfPrecipitation")
-    val probabilityOfPrecipitation: Int?
+    val probabilityOfPrecipitation: Int? = 0
 ){
     @Ignore
     constructor(current: Current) : this (

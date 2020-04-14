@@ -6,34 +6,34 @@ import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import com.example.lanweather.data.model.Period
 
-@Entity(tableName = "Periods")
+@Entity(tableName = "Period")
 data class PeriodEntity(
     @PrimaryKey @ColumnInfo(name = "startTime")
     val startTime: String?,
     @ColumnInfo(name = "number")
-    val number: Int?,
+    val number: Int? = 0,
     @ColumnInfo(name = "name")
-    val name: String?,
+    val name: String? = "",
     @ColumnInfo(name = "endTime")
-    val endTime: String?,
+    val endTime: String? = "",
     @ColumnInfo(name = "isDaytime")
-    val isDayTime: Boolean?,
+    val isDayTime: Boolean? = true,
     @ColumnInfo(name = "temperature")
-    val temperature: Int?,
+    val temperature: Int? = 0,
     @ColumnInfo(name = "temperatureUnit")
-    val temperatureUnit: Char?,
+    val temperatureUnit: Char? = 'a',
     @ColumnInfo(name = "temperatureTrend")
-    val temperatureTrend: String?,
+    val temperatureTrend: String? = "",
     @ColumnInfo(name = "windSpeed")
-    val windSpeed: String?,
+    val windSpeed: String? = "",
     @ColumnInfo(name = "windDirection")
-    val windDirection: Char?,
+    val windDirection: String? = "",
     @ColumnInfo(name = "icon")
-    val icon: String?,
+    val icon: String? = "",
     @ColumnInfo(name = "shortForecast")
-    val shortForecast: String?,
+    val shortForecast: String? = "",
     @ColumnInfo(name = "detailedForecast")
-    val detailedForecast: String?
+    val detailedForecast: String? = ""
 ) {
     @Ignore
     constructor(period: Period) : this (
