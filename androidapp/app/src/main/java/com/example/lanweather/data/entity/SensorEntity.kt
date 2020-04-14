@@ -10,9 +10,9 @@ import com.example.lanweather.data.model.Sensor
 data class SensorEntity (
     @PrimaryKey
     @ColumnInfo(name = "temperature")
-    val temperature: Double = 0.0,
+    val temperature: Double,
     @ColumnInfo(name = "humidity")
-    val humidity: Double? = 0.0
+    val humidity: Double?
 ){
     @Ignore
     constructor(sensor: Sensor) : this (

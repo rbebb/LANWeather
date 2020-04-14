@@ -11,29 +11,29 @@ data class PeriodEntity(
     @PrimaryKey @ColumnInfo(name = "startTime")
     val startTime: String?,
     @ColumnInfo(name = "number")
-    val number: Int? = 0,
+    val number: Int?,
     @ColumnInfo(name = "name")
-    val name: String? = "",
+    val name: String?,
     @ColumnInfo(name = "endTime")
-    val endTime: String? = "",
+    val endTime: String?,
     @ColumnInfo(name = "isDaytime")
-    val isDayTime: Boolean? = true,
+    val isDayTime: Boolean?,
     @ColumnInfo(name = "temperature")
-    val temperature: Int? = 0,
+    val temperature: Int?,
     @ColumnInfo(name = "temperatureUnit")
-    val temperatureUnit: Char? = 'a',
+    val temperatureUnit: Char?,
     @ColumnInfo(name = "temperatureTrend")
-    val temperatureTrend: String? = "",
+    val temperatureTrend: String?,
     @ColumnInfo(name = "windSpeed")
-    val windSpeed: String? = "",
+    val windSpeed: String?,
     @ColumnInfo(name = "windDirection")
-    val windDirection: String? = "",
+    val windDirection: String?,
     @ColumnInfo(name = "icon")
-    val icon: String? = "",
+    val icon: String?,
     @ColumnInfo(name = "shortForecast")
-    val shortForecast: String? = "",
+    val shortForecast: String?,
     @ColumnInfo(name = "detailedForecast")
-    val detailedForecast: String? = ""
+    val detailedForecast: String?
 ) {
     @Ignore
     constructor(period: Period) : this (
