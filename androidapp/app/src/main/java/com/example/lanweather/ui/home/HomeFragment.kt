@@ -18,7 +18,6 @@ import kotlinx.coroutines.*
 import java.lang.StringBuilder
 import kotlin.collections.ArrayList
 
-
 class HomeFragment : Fragment() {
 
     companion object {
@@ -42,6 +41,7 @@ class HomeFragment : Fragment() {
         CoroutineScope(CoroutineName("PopulateHome")).launch {
             withContext(Dispatchers.IO) {
                 // Incorporated this delay to allow the coroutine in the MainActivity to finish
+                // The app currently crashes without this
                 delay(2000)
 
                 val sensor: SensorEntity = database.sensorEntityDao().getSensor()

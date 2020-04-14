@@ -14,7 +14,6 @@ import com.example.lanweather.data.entity.DailyEntity
 import com.example.lanweather.data.entity.HourlyEntity
 import com.example.lanweather.data.entity.SensorEntity
 
-
 @Database(
     entities = [
         DailyEntity::class,

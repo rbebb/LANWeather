@@ -12,8 +12,6 @@ import com.example.lanweather.MainActivity
 import com.example.lanweather.R
 import com.example.lanweather.data.AppDatabase
 import com.example.lanweather.data.entity.CurrentEntity
-import com.example.lanweather.data.entity.DailyEntity
-import com.example.lanweather.data.entity.SensorEntity
 import com.example.lanweather.data.model.Period
 import kotlinx.coroutines.*
 import java.lang.StringBuilder
