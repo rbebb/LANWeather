@@ -70,7 +70,7 @@ Open the androidapp folder in Android Studio and click the run button (looks lik
 
 This shows how to setup the project and a walklthrough of the app.
 
-<https://www.youtube.com>
+<https://youtu.be/Q5loPWBkcJQ>
 
 ## Contributors
 
