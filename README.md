@@ -31,7 +31,7 @@ sudo make install-lib
 make build-release
 ```
 
-This set of steps firsts builds the Rust dynamic library for talking to the NWS API with release flags, installs it to `/usr/lib/`, builds the lanweatherd daemon with release flags linked to the installed library, then installs the daemon binary in `/usr/sbin` and registers it with systemd. **This will automaatically start the weather service.**
+This set of steps firsts builds the Rust dynamic library for talking to the NWS API with release flags, installs it to `/usr/lib/`, builds the lanweatherd daemon with release flags linked to the installed library, then installs the daemon binary in `/usr/sbin` and registers it with systemd. **This will automatically start the weather service.**
 `sudo` is needed for the install steps.
 
 #### Temperature Sensor
