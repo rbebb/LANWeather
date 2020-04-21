@@ -27,6 +27,7 @@
             app:layout_constraintVertical_bias=".04"/>
 
         <ImageView
+            android:id="@+id/current_weather_icon"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginTop="15dp"
@@ -45,9 +46,9 @@
             android:textSize="30sp"
             android:textColor="@android:color/white"
             app:layout_constraintTop_toBottomOf="@id/title"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@id/current_weather_icon"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias=".8"/>
+            app:layout_constraintHorizontal_bias=".5"/>
 
         <include
             android:id="@+id/today"

@@ -1,7 +1,6 @@
 package com.example.lanweather.data
 
 import android.content.Context
-import android.view.ViewDebug
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -14,7 +13,6 @@ import com.example.lanweather.data.entity.CurrentEntity
 import com.example.lanweather.data.entity.DailyEntity
 import com.example.lanweather.data.entity.HourlyEntity
 import com.example.lanweather.data.entity.SensorEntity
-
 
 @Database(
     entities = [
@@ -30,11 +28,8 @@ import com.example.lanweather.data.entity.SensorEntity
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun currentEntityDao(): CurrentEntityDao
-
     abstract fun dailyEntityDao(): DailyEntityDao
-
     abstract fun hourlyEntityDao(): HourlyEntityDao
-
     abstract fun sensorEntityDao(): SensorEntityDao
 
     companion object {
@@ -46,7 +41,7 @@ abstract class AppDatabase : RoomDatabase() {
         }
 
         private fun buildDatabase(context: Context) = Room.databaseBuilder(context,
-            AppDatabase::class.java, "test.db").build()
+            AppDatabase::class.java, "app.db").build()
     }
 
 }

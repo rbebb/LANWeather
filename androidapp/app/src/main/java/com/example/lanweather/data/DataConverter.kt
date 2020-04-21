@@ -4,6 +4,7 @@ import androidx.room.TypeConverter
 import com.example.lanweather.data.model.Period
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 
 object DataConverter {
 
@@ -14,7 +15,7 @@ object DataConverter {
             return emptyList()
         }
 
-        val moshi = Moshi.Builder().build()
+        val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
         val type = Types.newParameterizedType(List::class.java, Period::class.java)
         val adapter = moshi.adapter<List<Period>>(type)
         return adapter.fromJson(data)
@@ -23,7 +24,7 @@ object DataConverter {
     @TypeConverter
     @JvmStatic
     fun listToString(objects: List<Period>): String {
-        val moshi = Moshi.Builder().build()
+        val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
         val type = Types.newParameterizedType(List::class.java, Period::class.java)
         val adapter = moshi.adapter<List<Period>>(type)
         return adapter.toJson(objects)

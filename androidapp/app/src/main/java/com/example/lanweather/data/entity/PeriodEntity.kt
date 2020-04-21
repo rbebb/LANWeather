@@ -6,7 +6,7 @@ import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import com.example.lanweather.data.model.Period
 
-@Entity(tableName = "Periods")
+@Entity(tableName = "Period")
 data class PeriodEntity(
     @PrimaryKey @ColumnInfo(name = "startTime")
     val startTime: String?,
@@ -27,7 +27,7 @@ data class PeriodEntity(
     @ColumnInfo(name = "windSpeed")
     val windSpeed: String?,
     @ColumnInfo(name = "windDirection")
-    val windDirection: Char?,
+    val windDirection: String?,
     @ColumnInfo(name = "icon")
     val icon: String?,
     @ColumnInfo(name = "shortForecast")

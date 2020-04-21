@@ -13,7 +13,7 @@
         android:layout_marginBottom="15dp">
 
         <TextView
-            android:id="@+id/card_today_overview_title"
+            android:id="@+id/card_tomorrow_overview_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -22,32 +22,32 @@
             android:textSize="24sp"/>
 
         <RelativeLayout
-            android:id="@+id/card_today_title_divider"
+            android:id="@+id/card_tomorrow_title_divider"
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:layout_below="@id/card_today_overview_title"
+            android:layout_below="@id/card_tomorrow_overview_title"
             android:layout_marginTop="5dp"
             android:background="@color/gray"/>
 
         <ImageView
-            android:id="@+id/card_today_content_icon"
+            android:id="@+id/card_tomorrow_content_icon"
             android:layout_width="75dp"
             android:layout_height="75dp"
-            android:layout_below="@id/card_today_title_divider"
+            android:layout_below="@id/card_tomorrow_title_divider"
             android:layout_marginTop="15dp"
             android:layout_marginStart="23dp"
             android:src="@drawable/ic_cloudy_day_1"/>
 
         <TextView
-            android:id="@+id/card_today_content_text"
+            android:id="@+id/card_tomorrow_content_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/card_today_title_divider"
-            android:layout_toEndOf="@id/card_today_content_icon"
+            android:layout_below="@id/card_tomorrow_title_divider"
+            android:layout_toEndOf="@id/card_tomorrow_content_icon"
             android:layout_marginTop="15dp"
             android:layout_marginStart="25dp"
             android:layout_marginEnd="25dp"
-            android:text="Partly cloudy tomorrow. High of 48ºF."
+            android:text="@string/tomorrow_details"
             android:textSize="24sp"/>
 
     </RelativeLayout>
