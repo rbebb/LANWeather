@@ -1,6 +1,5 @@
 package com.example.lanweather.ui.home
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,15 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
 import com.example.lanweather.MainActivity
 import com.example.lanweather.R
 import com.example.lanweather.data.AppDatabase
 import com.example.lanweather.data.entity.CurrentEntity
 import com.example.lanweather.data.entity.SensorEntity
 import com.example.lanweather.data.model.Period
+import com.example.lanweather.ui.CommonUtils
 import kotlinx.coroutines.*
-import java.lang.StringBuilder
-import kotlin.collections.ArrayList
 
 class HomeFragment : Fragment() {
 
@@ -32,7 +31,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         viewModel =
-            ViewModelProviders.of(this).get(HomeViewModel::class.java)
+            ViewModelProvider(this).get(HomeViewModel::class.java)
 
         val root = inflater.inflate(R.layout.home_fragment, container, false)
 
@@ -58,45 +57,22 @@ class HomeFragment : Fragment() {
                 val dayMaxTempF: Double = dayMaxTemp * 9/5 + 32.0
 
                 val tomorrow: Period = database.dailyEntityDao().getDaily().periods[1]
-                val tomorrowWeather: String? = tomorrow.shortForecast
+                var tomorrowWeather: String? = tomorrow.shortForecast
+                if (tomorrowWeather == null) {
+                    tomorrowWeather = "sunny"
+                }
                 val tomorrowMaxTemp: Int = tomorrow.temperature!!
                 val tomorrowMaxTempF: Double = tomorrowMaxTemp * 9/5 + 32.0
 
                 val hourlyList: List<Period> = database.hourlyEntityDao().getHourly().periods
-                val smallHourlyList = arrayListOf(hourlyList[0], hourlyList[1], hourlyList[2])
+                val smallHourlyList = listOf(hourlyList[0], hourlyList[1], hourlyList[2])
 
-                val stringBuilder = StringBuilder()
-                for (i in weather!!.indices) {
-                    if (i == 0) {
-                        stringBuilder.append(weather[i].toUpperCase())
-                    }
-                    else if (weather[i] == '_') {
-                        stringBuilder.append(' ')
-                    }
-                    else {
-                        stringBuilder.append(weather[i])
-                    }
-                }
-                weather = stringBuilder.toString()
+                weather = CommonUtils.getFormattedWeather(weather)
 
                 withContext(Dispatchers.Main) {
                     val imageViewCurrent: ImageView = root.findViewById(R.id.current_weather_icon)
-                    if (weather.toLowerCase().contains("rain")) {
-                        imageViewCurrent.setImageDrawable(MainActivity.getInstance().getDrawable(R.drawable.ic_rain))
-                    }
-                    else if (weather.toLowerCase().contains("partly")) {
-                        imageViewCurrent.setImageDrawable(MainActivity.getInstance().getDrawable(R.drawable.ic_cloudy_day_1))
-                    }
-                    else if (weather.toLowerCase().contains("mostly")) {
-                        imageViewCurrent.setImageDrawable(MainActivity.getInstance().getDrawable(R.drawable.ic_cloudy_day))
-                    }
-                    else if (weather.toLowerCase().contains("sunny")) {
-                        imageViewCurrent.setImageDrawable(MainActivity.getInstance().getDrawable(R.drawable.ic_sun))
-                    }
-                    else if (weather.toLowerCase().contains("snow")) {
-                        imageViewCurrent.setImageDrawable(MainActivity.getInstance().getDrawable(R.drawable.ic_snowing_1))
-                    }
-                    
+                    CommonUtils.setWeatherIcon(weather, imageViewCurrent, resources, context)
+
                     val textViewOverview: TextView = root.findViewById(R.id.home_overview_text)
                     textViewOverview.text = String.format(getString(R.string.home_overview), humidity, curTempF)
 
@@ -104,41 +80,13 @@ class HomeFragment : Fragment() {
                     textViewToday.text = String.format(getString(R.string.today_details), weather, dayMaxTempF)
 
                     val imageViewToday: ImageView = root.findViewById(R.id.card_today_content_icon)
-                    if (weather.toLowerCase().contains("rain")) {
-                        imageViewToday.setImageDrawable(MainActivity.getInstance().getDrawable(R.drawable.ic_rain))
-                    }
-                    else if (weather.toLowerCase().contains("partly")) {
-                        imageViewToday.setImageDrawable(MainActivity.getInstance().getDrawable(R.drawable.ic_cloudy_day_1))
-                    }
-                    else if (weather.toLowerCase().contains("mostly")) {
-                        imageViewToday.setImageDrawable(MainActivity.getInstance().getDrawable(R.drawable.ic_cloudy_day))
-                    }
-                    else if (weather.toLowerCase().contains("sunny")) {
-                        imageViewToday.setImageDrawable(MainActivity.getInstance().getDrawable(R.drawable.ic_sun))
-                    }
-                    else if (weather.toLowerCase().contains("snow")) {
-                        imageViewToday.setImageDrawable(MainActivity.getInstance().getDrawable(R.drawable.ic_snowing_1))
-                    }
+                    CommonUtils.setWeatherIcon(weather, imageViewToday, resources, context)
 
                     val textViewTomorrow: TextView = root.findViewById(R.id.card_tomorrow_content_text)
                     textViewTomorrow.text = String.format(getString(R.string.tomorrow_details), tomorrowWeather, tomorrowMaxTempF)
 
                     val imageViewTomorrow: ImageView = root.findViewById(R.id.card_tomorrow_content_icon)
-                    if (tomorrowWeather!!.toLowerCase().contains("rain")) {
-                        imageViewTomorrow.setImageDrawable(MainActivity.getInstance().getDrawable(R.drawable.ic_rain))
-                    }
-                    else if (tomorrowWeather.toLowerCase().contains("partly")) {
-                        imageViewTomorrow.setImageDrawable(MainActivity.getInstance().getDrawable(R.drawable.ic_cloudy_day_1))
-                    }
-                    else if (tomorrowWeather.toLowerCase().contains("mostly")) {
-                        imageViewTomorrow.setImageDrawable(MainActivity.getInstance().getDrawable(R.drawable.ic_cloudy_day))
-                    }
-                    else if (tomorrowWeather.toLowerCase().contains("sunny")) {
-                        imageViewTomorrow.setImageDrawable(MainActivity.getInstance().getDrawable(R.drawable.ic_sun))
-                    }
-                    else if (tomorrowWeather.toLowerCase().contains("snow")) {
-                        imageViewTomorrow.setImageDrawable(MainActivity.getInstance().getDrawable(R.drawable.ic_snowing_1))
-                    }
+                    CommonUtils.setWeatherIcon(tomorrowWeather, imageViewTomorrow, resources, context)
 
                     hourly(root, smallHourlyList)
                 }
@@ -150,48 +98,44 @@ class HomeFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         // TODO: Use the ViewModel
     }
 
-    private fun hourly(root: View, smallHourlyList: ArrayList<Period>) {
-        val hourTextViews = arrayListOf<TextView>(
+    private fun hourly(root: View, smallHourlyList: List<Period>) {
+        val test = mutableListOf<TextView>()
+        for (i in 1..3) {
+            val viewId = resources.getIdentifier("card_hourly_overview_hour_${i}", "id", context?.packageName)
+            test.add(root.findViewById(viewId))
+        }
+        print("HOWDY $test")
+
+        val hourTextViews = listOf<TextView>(
             root.findViewById(R.id.card_hourly_overview_hour_1),
             root.findViewById(R.id.card_hourly_overview_hour_2),
             root.findViewById(R.id.card_hourly_overview_hour_3)
         )
 
-        val hourImageViews = arrayListOf<ImageView>(
+        val hourImageViews = listOf<ImageView>(
             root.findViewById(R.id.card_hourly_overview_hour_1_icon),
             root.findViewById(R.id.card_hourly_overview_hour_2_icon),
             root.findViewById(R.id.card_hourly_overview_hour_3_icon)
         )
 
-        val hourTempTextViews = arrayListOf<TextView>(
+        val hourTempTextViews = listOf<TextView>(
             root.findViewById(R.id.card_hourly_overview_hour_1_temp),
             root.findViewById(R.id.card_hourly_overview_hour_2_temp),
             root.findViewById(R.id.card_hourly_overview_hour_3_temp)
         )
         for (i in smallHourlyList.indices) {
-            val weather: String? = smallHourlyList[i].shortForecast
+            var weather: String? = smallHourlyList[i].shortForecast
+            if (weather == null) {
+                weather = "sunny"
+            }
             val startTime: String? = smallHourlyList[i].startTime
             hourTextViews[i].text = startTime?.substring(11, 16)
 
-            if (weather!!.toLowerCase().contains("rain")) {
-                hourImageViews[i].setImageDrawable(MainActivity.getInstance().getDrawable(R.drawable.ic_rain))
-            }
-            else if (weather.toLowerCase().contains("partly")) {
-                hourImageViews[i].setImageDrawable(MainActivity.getInstance().getDrawable(R.drawable.ic_cloudy_day_1))
-            }
-            else if (weather.toLowerCase().contains("mostly")) {
-                hourImageViews[i].setImageDrawable(MainActivity.getInstance().getDrawable(R.drawable.ic_cloudy_day))
-            }
-            else if (weather.toLowerCase().contains("sunny")) {
-                hourImageViews[i].setImageDrawable(MainActivity.getInstance().getDrawable(R.drawable.ic_sun))
-            }
-            else if (weather.toLowerCase().contains("snow")) {
-                hourImageViews[i].setImageDrawable(MainActivity.getInstance().getDrawable(R.drawable.ic_snowing_1))
-            }
+            CommonUtils.setWeatherIcon(weather, hourImageViews[i], resources, context)
 
             val maxTemp: Int = smallHourlyList[i].temperature!!
             val maxTempF: Double = maxTemp * 9/5 + 32.0

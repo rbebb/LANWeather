@@ -11,18 +11,18 @@ import com.example.lanweather.data.entity.SensorEntity
 interface SensorEntityDao {
 
     @Query("SELECT * FROM Sensor")
-    fun getSensor(): SensorEntity
+    suspend fun getSensor(): SensorEntity
 
     @Insert(onConflict = REPLACE)
-    fun insertSensor(sensor: SensorEntity)
+    suspend fun insertSensor(sensor: SensorEntity)
 
     @Transaction
-    fun deleteAndInsert(sensor: SensorEntity) {
+    suspend fun deleteAndInsert(sensor: SensorEntity) {
         deleteAll()
         insertSensor(sensor)
     }
 
     @Query("DELETE FROM Sensor")
-    fun deleteAll()
+    suspend fun deleteAll()
 
 }
