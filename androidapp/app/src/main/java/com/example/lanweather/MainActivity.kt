@@ -12,7 +12,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
+import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.lanweather.data.AppDatabase
 import com.example.lanweather.data.entity.CurrentEntity
@@ -29,6 +29,7 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.*
 import org.json.JSONObject
+import org.zeromq.SocketType
 import zmq.ZMQ
 
 class MainActivity : AppCompatActivity() {
@@ -54,14 +55,14 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(setOf(
             R.id.navigation_home, R.id.navigation_forecast, R.id.navigation_settings))
-//        setupActionBarWithNavController(this, navController, appBarConfiguration)
+//        setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
         val database = AppDatabase(this)
 
         CoroutineScope(CoroutineName("GetData")).launch {
             val context: org.zeromq.ZMQ.Context = org.zeromq.ZMQ.context(1)
-            val socket: org.zeromq.ZMQ.Socket = context.socket(ZMQ.ZMQ_REQ)
+            val socket: org.zeromq.ZMQ.Socket = context.socket(SocketType.type(ZMQ.ZMQ_REQ))
             socket.connect("tcp://lw.minifigone.com:5680")
             socket.send("launch the nukes")
             val jsonData: String = socket.recvStr()
