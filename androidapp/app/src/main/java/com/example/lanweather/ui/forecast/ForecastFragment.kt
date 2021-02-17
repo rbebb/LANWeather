@@ -13,7 +13,8 @@ import com.example.lanweather.R
 import com.example.lanweather.data.AppDatabase
 import com.example.lanweather.data.entity.CurrentEntity
 import com.example.lanweather.data.model.Period
-import com.example.lanweather.ui.CommonUtils
+import com.example.lanweather.ui.utils.ImageUtils
+import com.example.lanweather.ui.utils.StringUtils
 import kotlinx.coroutines.*
 
 class ForecastFragment : Fragment() {
@@ -52,20 +53,20 @@ class ForecastFragment : Fragment() {
 
                 val dailyList: List<Period> = database.dailyEntityDao().getDaily().periods
 
-                weather = CommonUtils.getFormattedWeather(weather)
+                weather = StringUtils.getFormattedWeather(weather)
 
                 withContext(Dispatchers.Main) {
                     val textViewToday: TextView = root.findViewById(R.id.card_today_content_text)
                     textViewToday.text = String.format(getString(R.string.today_details), weather, dayMaxTempF)
 
                     val imageViewToday: ImageView = root.findViewById(R.id.card_today_content_icon)
-                    CommonUtils.setWeatherIcon(weather, imageViewToday, resources, context)
+                    ImageUtils.setWeatherIcon(weather, imageViewToday, resources, context)
 
                     val textViewTomorrow: TextView = root.findViewById(R.id.card_tomorrow_content_text)
                     textViewTomorrow.text = String.format(getString(R.string.tomorrow_details), tomorrowWeather, tomorrowMaxTempF)
 
                     val imageViewTomorrow: ImageView = root.findViewById(R.id.card_tomorrow_content_icon)
-                    CommonUtils.setWeatherIcon(tomorrowWeather, imageViewTomorrow, resources, context)
+                    ImageUtils.setWeatherIcon(tomorrowWeather, imageViewTomorrow, resources, context)
 
                     daily(root, dailyList)
                 }
@@ -120,7 +121,7 @@ class ForecastFragment : Fragment() {
             skip = true
             dailyTextViews[innerListIterator].text = dailyList[i].name
 
-            CommonUtils.setWeatherIcon(weather, dailyImageViews[innerListIterator], resources, context)
+            ImageUtils.setWeatherIcon(weather, dailyImageViews[innerListIterator], resources, context)
 
             val maxTemp: Int = dailyList[i].temperature!!
             val maxTempF: Double = maxTemp * 9 / 5 + 32.0

@@ -1,32 +1,13 @@
-package com.example.lanweather.ui
+package com.example.lanweather.ui.utils
 
 import android.content.Context
 import android.content.res.Resources
 import android.widget.ImageView
 import androidx.core.content.res.ResourcesCompat
 import com.example.lanweather.R
-import java.lang.StringBuilder
 
-class CommonUtils {
+class ImageUtils {
     companion object {
-        fun getFormattedWeather(weather: String): String {
-            val stringBuilder = StringBuilder()
-            for (i in weather.indices) {
-                when {
-                    i == 0 -> {
-                        stringBuilder.append(weather[i].toUpperCase())
-                    }
-                    weather[i] == '_' -> {
-                        stringBuilder.append(' ')
-                    }
-                    else -> {
-                        stringBuilder.append(weather[i])
-                    }
-                }
-            }
-            return stringBuilder.toString()
-        }
-
         fun setWeatherIcon(weather: String, imageView: ImageView, resources: Resources, context: Context?) {
             when {
                 weather.toLowerCase().contains("rain") -> {

@@ -14,7 +14,8 @@ import com.example.lanweather.data.AppDatabase
 import com.example.lanweather.data.entity.CurrentEntity
 import com.example.lanweather.data.entity.SensorEntity
 import com.example.lanweather.data.model.Period
-import com.example.lanweather.ui.CommonUtils
+import com.example.lanweather.ui.utils.ImageUtils
+import com.example.lanweather.ui.utils.StringUtils
 import kotlinx.coroutines.*
 
 class HomeFragment : Fragment() {
@@ -67,11 +68,11 @@ class HomeFragment : Fragment() {
                 val hourlyList: List<Period> = database.hourlyEntityDao().getHourly().periods
                 val smallHourlyList = listOf(hourlyList[0], hourlyList[1], hourlyList[2])
 
-                weather = CommonUtils.getFormattedWeather(weather)
+                weather = StringUtils.getFormattedWeather(weather)
 
                 withContext(Dispatchers.Main) {
                     val imageViewCurrent: ImageView = root.findViewById(R.id.current_weather_icon)
-                    CommonUtils.setWeatherIcon(weather, imageViewCurrent, resources, context)
+                    ImageUtils.setWeatherIcon(weather, imageViewCurrent, resources, context)
 
                     val textViewOverview: TextView = root.findViewById(R.id.home_overview_text)
                     textViewOverview.text = String.format(getString(R.string.home_overview), humidity, curTempF)
@@ -80,13 +81,13 @@ class HomeFragment : Fragment() {
                     textViewToday.text = String.format(getString(R.string.today_details), weather, dayMaxTempF)
 
                     val imageViewToday: ImageView = root.findViewById(R.id.card_today_content_icon)
-                    CommonUtils.setWeatherIcon(weather, imageViewToday, resources, context)
+                    ImageUtils.setWeatherIcon(weather, imageViewToday, resources, context)
 
                     val textViewTomorrow: TextView = root.findViewById(R.id.card_tomorrow_content_text)
                     textViewTomorrow.text = String.format(getString(R.string.tomorrow_details), tomorrowWeather, tomorrowMaxTempF)
 
                     val imageViewTomorrow: ImageView = root.findViewById(R.id.card_tomorrow_content_icon)
-                    CommonUtils.setWeatherIcon(tomorrowWeather, imageViewTomorrow, resources, context)
+                    ImageUtils.setWeatherIcon(tomorrowWeather, imageViewTomorrow, resources, context)
 
                     hourly(root, smallHourlyList)
                 }
@@ -135,7 +136,7 @@ class HomeFragment : Fragment() {
             val startTime: String? = smallHourlyList[i].startTime
             hourTextViews[i].text = startTime?.substring(11, 16)
 
-            CommonUtils.setWeatherIcon(weather, hourImageViews[i], resources, context)
+            ImageUtils.setWeatherIcon(weather, hourImageViews[i], resources, context)
 
             val maxTemp: Int = smallHourlyList[i].temperature!!
             val maxTempF: Double = maxTemp * 9/5 + 32.0
