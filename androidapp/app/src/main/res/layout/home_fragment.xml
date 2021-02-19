@@ -24,7 +24,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintHorizontal_bias=".18"
-            app:layout_constraintVertical_bias=".04"/>
+            app:layout_constraintVertical_bias=".04" />
 
         <ImageView
             android:id="@+id/current_weather_icon"
@@ -35,7 +35,7 @@
             app:layout_constraintTop_toBottomOf="@id/title"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias=".1"/>
+            app:layout_constraintHorizontal_bias=".1" />
 
         <TextView
             android:id="@+id/home_overview_text"
@@ -48,7 +48,7 @@
             app:layout_constraintTop_toBottomOf="@id/title"
             app:layout_constraintStart_toEndOf="@id/current_weather_icon"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias=".5"/>
+            app:layout_constraintHorizontal_bias=".5" />
 
         <include
             android:id="@+id/today"
@@ -61,7 +61,7 @@
             app:layout_constraintTop_toBottomOf="@id/home_overview_text"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias=".5"/>
+            app:layout_constraintHorizontal_bias=".5" />
 
         <include
             android:id="@+id/hourly"
@@ -74,7 +74,7 @@
             app:layout_constraintTop_toBottomOf="@id/today"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias=".5"/>
+            app:layout_constraintHorizontal_bias=".5" />
 
         <include
             android:id="@+id/tomorrow"
@@ -87,7 +87,7 @@
             app:layout_constraintTop_toBottomOf="@id/hourly"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias=".5"/>
+            app:layout_constraintHorizontal_bias=".5" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -101,8 +101,6 @@
             app:layout_constraintTop_toBottomOf="@id/tomorrow"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias=".5"/>
-
+            app:layout_constraintHorizontal_bias=".5" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </androidx.core.widget.NestedScrollView>

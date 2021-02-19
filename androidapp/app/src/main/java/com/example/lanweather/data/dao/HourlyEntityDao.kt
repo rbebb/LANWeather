@@ -11,17 +11,17 @@ import com.example.lanweather.data.entity.HourlyEntity
 interface HourlyEntityDao {
 
     @Query("SELECT * FROM Hourly")
-    fun getHourly(): HourlyEntity
+    suspend fun getHourly(): HourlyEntity
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertHourly(hourly: HourlyEntity)
+    suspend fun insertHourly(hourly: HourlyEntity)
 
     @Transaction
-    fun deleteAndInsert(hourly: HourlyEntity) {
+    suspend fun deleteAndInsert(hourly: HourlyEntity) {
         deleteAll()
         insertHourly(hourly)
     }
 
     @Query("DELETE FROM Hourly")
-    fun deleteAll()
+    suspend fun deleteAll()
 }

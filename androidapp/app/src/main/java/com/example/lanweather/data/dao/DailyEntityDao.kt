@@ -11,17 +11,17 @@ import com.example.lanweather.data.entity.DailyEntity
 interface DailyEntityDao {
 
     @Query("SELECT * FROM Daily")
-    fun getDaily(): DailyEntity
+    suspend fun getDaily(): DailyEntity
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertDaily(daily: DailyEntity)
+    suspend fun insertDaily(daily: DailyEntity)
 
     @Transaction
-    fun deleteAndInsert(daily: DailyEntity) {
+    suspend fun deleteAndInsert(daily: DailyEntity) {
         deleteAll()
         insertDaily(daily)
     }
 
     @Query("DELETE FROM Daily")
-    fun deleteAll()
+    suspend fun deleteAll()
 }

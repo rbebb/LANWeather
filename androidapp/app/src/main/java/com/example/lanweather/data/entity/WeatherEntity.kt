@@ -14,7 +14,7 @@ data class WeatherEntity (
     @ColumnInfo(name = "intensity")
     val intensity: String? = "",
     @ColumnInfo(name = "visibility")
-    val visibility: Double?= 0.0
+    val visibility: Double? = 0.0
 ){
     @Ignore
     constructor(weather: Weather) : this (

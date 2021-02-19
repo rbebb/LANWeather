@@ -11,17 +11,17 @@ import com.example.lanweather.data.entity.CurrentEntity
 interface CurrentEntityDao {
 
     @Query("SELECT * FROM Current")
-    fun getCurrent(): CurrentEntity
+    suspend fun getCurrent(): CurrentEntity
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertCurrent(current: CurrentEntity)
+    suspend fun insertCurrent(current: CurrentEntity)
 
     @Transaction
-    fun deleteAndInsert(current: CurrentEntity) {
+    suspend fun deleteAndInsert(current: CurrentEntity) {
         deleteAll()
         insertCurrent(current)
     }
 
     @Query("DELETE FROM Current")
-    fun deleteAll()
+    suspend fun deleteAll()
 }
