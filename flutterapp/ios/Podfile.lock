@@ -1,0 +1,16 @@
+PODS:
+  - SwiftyZeroMQ5 (1.3.0)
+
+DEPENDENCIES:
+  - SwiftyZeroMQ5 (~> 1.3.0)
+
+SPEC REPOS:
+  trunk:
+    - SwiftyZeroMQ5
+
+SPEC CHECKSUMS:
+  SwiftyZeroMQ5: 2eef9b705384a9a94c50484ad01b503e7cce0d24
+
+PODFILE CHECKSUM: 40e5df7beb1723c328a13cd5be7676bf0fcf4a85
+
+COCOAPODS: 1.10.1
