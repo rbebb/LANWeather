@@ -1,0 +1,23 @@
+{
+    "name": "LAN Weather",
+    "short_name": "LAN Weather",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#0175C2",
+    "theme_color": "#0175C2",
+    "description": "A weather project.",
+    "orientation": "portrait-primary",
+    "prefer_related_applications": false,
+    "icons": [
+        {
+            "src": "icons/app_icon_192.png",
+            "sizes": "192x189",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/app_icon_512.png",
+            "sizes": "512x504",
+            "type": "image/png"
+        }
+    ]
+}
