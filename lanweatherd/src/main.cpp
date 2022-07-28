@@ -84,16 +84,16 @@ int main(void) {
 
     vector<thread> threads;
 
-    thread thr_nws_fetch(nws_loop, ref(cache));
+    std::thread thr_nws_fetch(nws_loop, ref(cache));
     threads.push_back(move(thr_nws_fetch)); // n.b. thread objects can't be copied
 
-    thread thr_sensors_recv(sensor_loop, ref(cache));
+    std::thread thr_sensors_recv(sensor_loop, ref(cache));
     threads.push_back(move(thr_sensors_recv));
 
-    thread thr_bcast_all(pub_loop, ref(cache));
+    std::thread thr_bcast_all(pub_loop, ref(cache));
     threads.push_back(move(thr_bcast_all));
 
-    thread thr_req_manager(rep_loop, ref(cache));
+    std::thread thr_req_manager(rep_loop, ref(cache));
     threads.push_back(move(thr_req_manager));
 
     for (unsigned int i = 0; i < threads.size(); i++) {

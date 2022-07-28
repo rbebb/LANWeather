@@ -9,8 +9,8 @@ debug-dir = debug/
 release-dir = release/
 objects-dir = objects/
 
-cxx-compiler-flags-debug = -Wall -g
-cxx-compiler-flags-release = -w -O2
+cxx-compiler-flags-debug = -Wall -g -std=c++11
+cxx-compiler-flags-release = -w -O2 -std=c++11
 
 cxx-linker-flags-debug = -lstdc++ -pthread -lzmq -L $(rust-build-dir)$(debug-dir) -lnws_request
 cxx-linker-flags-release = -lstdc++ -pthread -lzmq -lnws_request

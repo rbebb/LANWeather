@@ -1,10 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutterapp/components/forecast_overview_row.dart';
+import 'package:flutterapp/models/daily.dart';
 import 'package:flutterapp/strings.dart';
 
 class ForecastOverview extends StatelessWidget {
+  final Map<String, dynamic> weatherData;
+
+  const ForecastOverview({required this.weatherData});
+
   @override
   Widget build(BuildContext context) {
+    final daily = Daily.fromJson(weatherData["nws"]["daily"]);
+    final periodsOnlyDayTime = daily.periods
+        .where((period) => period.isDaytime != null && period.isDaytime!)
+        .toList()
+        .take(7) // Get the first 7 entries in the list
+        .toList();
+
     return Container(
       color: Colors.white,
       height: 500.0,
@@ -25,15 +37,7 @@ class ForecastOverview extends StatelessWidget {
             ),
           ),
           ...buildRows(
-            [
-              "Monday",
-              "Tuesday",
-              "Wednesday",
-              "Thursday",
-              "Friday",
-              "Saturday",
-              "Sunday",
-            ],
+            periodsOnlyDayTime.map((period) => period.name ?? "").toList(),
             [
               "assets/weather_icons/ic_sun.png",
               "assets/weather_icons/ic_sun.png",
@@ -43,15 +47,7 @@ class ForecastOverview extends StatelessWidget {
               "assets/weather_icons/ic_sun.png",
               "assets/weather_icons/ic_sun.png",
             ],
-            [
-              "70º",
-              "70º",
-              "70º",
-              "70º",
-              "70º",
-              "70º",
-              "70º",
-            ],
+            periodsOnlyDayTime.map((period) => "${period.temperature}º").toList(),
           ),
         ],
       ),
@@ -60,9 +56,9 @@ class ForecastOverview extends StatelessWidget {
 }
 
 List<Widget> buildRows(
-  List<String> days,
-  List<String> imageLocations,
-  List<String> temperatures,
+  final List<String> days,
+  final List<String> imageLocations,
+  final List<String> temperatures,
 ) {
   return [
     // Unpack each row's group (List) of widgets with spread operator

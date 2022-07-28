@@ -5,7 +5,7 @@ class HourlyOverviewRow extends StatelessWidget {
   final String imageLocation;
   final String temperature;
 
-  HourlyOverviewRow({
+  const HourlyOverviewRow({
     required this.time,
     required this.imageLocation,
     required this.temperature,

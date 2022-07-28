@@ -12,12 +12,16 @@ import zmq.ZMQ
 
 class MainActivity: FlutterActivity() {
     companion object {
-        private const val FETCH_ALL_WEATHER_DATA_CHANNEL = "com.lanweather.flutterapp/fetchallweatherdata"
+        private const val FETCH_ALL_WEATHER_DATA_CHANNEL =
+            "com.lanweather.flutterapp/fetchallweatherdata"
     }
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
-        MethodChannel(flutterEngine.dartExecutor.binaryMessenger, FETCH_ALL_WEATHER_DATA_CHANNEL).setMethodCallHandler { call, result ->
+        MethodChannel(
+            flutterEngine.dartExecutor.binaryMessenger,
+            FETCH_ALL_WEATHER_DATA_CHANNEL
+        ).setMethodCallHandler { call, result ->
             if (call.method == "fetchAllWeatherData") {
                 val url = call.argument<String>("url")
                 val data = call.argument<String>("data")
@@ -35,61 +39,12 @@ class MainActivity: FlutterActivity() {
                     socket.send(data)
                     val jsonData: String = socket.recvStr()
                     socket.close()
+                    context.term()
 
                     // Return the JSON data to the Flutter code
-                    result.success(getCurrentData(jsonData))
+                    result.success(jsonData)
                 }
             }
         }
-    }
-
-    /**
-     * Get weather data for the current time
-     *
-     * @param jsonData: the JSON data
-     * @return the specific stringified JSON data
-     */
-    private fun getCurrentData(jsonData: String): String {
-        // Get the nested JSON object
-        var jsonDataObj = JSONObject(jsonData).get("nws")
-        jsonDataObj = JSONObject(jsonDataObj.toString()).get("current")
-        return jsonDataObj.toString()
-    }
-
-    /**
-     * Get the daily weather data
-     *
-     * @param jsonData: the JSON data
-     * @return the specific stringified JSON data
-     */
-    private fun getDailyData(jsonData: String): String {
-        // Get the nested JSON object
-        var jsonDataObj = JSONObject(jsonData).get("nws")
-        jsonDataObj = JSONObject(jsonDataObj.toString()).get("daily")
-        return jsonDataObj.toString()
-    }
-
-    /**
-     * Get the hourly weather data
-     *
-     * @param jsonData: the JSON data
-     * @return the specific stringified JSON data
-     */
-    private fun getHourlyData(jsonData: String): String {
-        // Get the nested JSON object
-        var jsonDataObj = JSONObject(jsonData).get("nws")
-        jsonDataObj = JSONObject(jsonDataObj.toString()).get("hourly")
-        return jsonDataObj.toString()
-    }
-
-    /**
-     * Get the sensor data
-     *
-     * @param jsonData: the JSON data
-     * @return the specific stringified JSON data
-     */
-    private fun getSensorData(jsonData: String): String {
-        val jsonDataObj = JSONObject(jsonData).get("sensor")
-        return jsonDataObj.toString()
     }
 }
