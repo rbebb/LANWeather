@@ -6,27 +6,15 @@ import 'package:flutterapp/models/current.dart';
 import 'package:flutterapp/services/weather_api.dart';
 import 'package:flutterapp/strings.dart';
 
-class Home extends StatefulWidget {
-  @override
-  _HomeState createState() => _HomeState();
-}
-
-class _HomeState extends State<Home> {
-  // Future<Current> _futureCurrent;
-
-  @override
-  void initState() {
-    super.initState();
-    // _futureCurrent = fetchWeatherInfo();
-  }
-
+class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: fetchAllWeatherData(),
       builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          final current = snapshot.data as Current;
+        if (snapshot.data != null) {
+          final weatherData = snapshot.data as Map<String, dynamic>;
+
           return ListView(
             padding: const EdgeInsets.symmetric(vertical: 40.0),
             children: [
@@ -40,7 +28,7 @@ class _HomeState extends State<Home> {
                   ),
                 ),
               ),
-              CurrentWeather(current: current),
+              CurrentWeather(weatherData: weatherData),
               Container(
                 margin: const EdgeInsets.only(top: 30.0),
                 child: DayOverview(
@@ -56,9 +44,8 @@ class _HomeState extends State<Home> {
               )
             ],
           );
-        } else {
-          return Container();
         }
+        return Container();
       },
     );
   }

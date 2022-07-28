@@ -25,12 +25,22 @@ import SwiftyZeroMQ5
             
             var jsonData: String?
             do {
+                print("yeet0")
                 let context = try SwiftyZeroMQ.Context()
-                let socket = try context.socket(SwiftyZeroMQ.SocketType.request)
+                let socket = try context.socket(.request)
+                print("yeet1")
+                print(url!)
+                print(data!)
                 try socket.connect(url!)
+                print("yeet2")
                 try socket.send(string: data!)
+                print("yeet3")
                 jsonData = try socket.recv()
+                print(jsonData)
+                print("yeet4")
                 try socket.close()
+                try context.terminate()
+                print("yeet5")
             } catch {
                 print(error)
             }
@@ -45,8 +55,9 @@ import SwiftyZeroMQ5
     
     private func getCurrentWeatherData(jsonData: String) -> String {
         // Get nested JSON object
-//        let jsonDataObj = JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions.mutableContainers) as? [String: Any]
-//        return String(jsonDataObj["nws"]["current"])
-        return ""
+        let completeJsonDataObj = try? JSONSerialization.jsonObject(with: jsonData.data(using: .utf8)!, options: []) as? [String : Any]
+        let finalJsonDataObj = (completeJsonDataObj?["nws"] as? [String : Any])?["current"]
+        print(String(describing: finalJsonDataObj))
+        return String(describing: finalJsonDataObj)
     }
 }

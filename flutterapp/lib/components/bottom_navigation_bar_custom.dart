@@ -3,7 +3,8 @@ import 'package:flutterapp/strings.dart';
 
 class BottomNavigationBarCustom extends StatefulWidget {
   final ValueSetter<int> callback;
-  BottomNavigationBarCustom({required this.callback});
+
+  const BottomNavigationBarCustom({required this.callback});
 
   @override
   _BottomNavigationBarCustomState createState() =>
@@ -24,15 +25,15 @@ class _BottomNavigationBarCustomState extends State<BottomNavigationBarCustom> {
     return BottomNavigationBar(
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-          icon: Icon(Icons.home),
+          icon: const Icon(Icons.home),
           label: Strings.home,
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.cloud),
+          icon: const Icon(Icons.cloud),
           label: Strings.forecast,
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.settings),
+          icon: const Icon(Icons.settings),
           label: Strings.settings,
         )
       ],
