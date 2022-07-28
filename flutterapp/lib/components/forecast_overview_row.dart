@@ -5,7 +5,7 @@ class ForecastOverviewRow extends StatelessWidget {
   final String imageLocation;
   final String temperature;
 
-  ForecastOverviewRow({
+  const ForecastOverviewRow({
     required this.day,
     required this.imageLocation,
     required this.temperature,
