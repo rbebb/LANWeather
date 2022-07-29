@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterapp/components/day_overview.dart';
 import 'package:flutterapp/components/forecast_overview.dart';
+import 'package:flutterapp/models/time_frame.dart';
 import 'package:flutterapp/services/weather_api.dart';
 import 'package:flutterapp/strings.dart';
 
@@ -12,6 +13,8 @@ class Forecast extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.data != null) {
           final weatherData = snapshot.data as Map<String, dynamic>;
+          final daily = TimeFrame.fromJson(weatherData["nws"]["daily"]);
+          final tomorrow = daily.periods[1];
 
           return ListView(
             padding: const EdgeInsets.symmetric(vertical: 40.0),
@@ -32,8 +35,8 @@ class Forecast extends StatelessWidget {
                 child: DayOverview(
                   title: Strings.tomorrow,
                   content: Strings.tomorrowDetails,
-                  weather: "Sunny",
-                  temperature: 68.0,
+                  weather: tomorrow.shortForecast ?? "Unknown",
+                  temperature: tomorrow.temperature ?? 0,
                 ),
               ),
               Container(

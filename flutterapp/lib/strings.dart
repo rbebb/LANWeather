@@ -7,8 +7,7 @@ class Strings {
   static const String settings = "Settings";
 
   // Home
-  static String currentWeather =
-      "Humidity: %i%%\nWind: %.0fmph SW\nCurrent: %.0fºF";
+  static String currentWeather = "Humidity: %i%%\nWind: %.0fmph SW\nCurrent: %.0fºF";
   static const String hourly = "Hourly";
 
   // Forecast
@@ -17,8 +16,8 @@ class Strings {
   static const String sevenDayForecast = "7-Day Forecast";
 
   // Today
-  static const String todayDetails = "%s today. High of %.0fºF.";
+  static const String todayDetails = "%s today. High of %iºF.";
 
   // Tomorrow
-  static const String tomorrowDetails = "%s tomorrow. High of %.0fºF.";
+  static const String tomorrowDetails = "%s tomorrow. High of %iºF.";
 }

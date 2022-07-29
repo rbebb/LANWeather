@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterapp/components/forecast_overview_row.dart';
-import 'package:flutterapp/models/daily.dart';
+import 'package:flutterapp/models/time_frame.dart';
 import 'package:flutterapp/strings.dart';
 
 class ForecastOverview extends StatelessWidget {
@@ -10,7 +10,7 @@ class ForecastOverview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final daily = Daily.fromJson(weatherData["nws"]["daily"]);
+    final daily = TimeFrame.fromJson(weatherData["nws"]["daily"]);
     final periodsOnlyDayTime = daily.periods
         .where((period) => period.isDaytime != null && period.isDaytime!)
         .toList()

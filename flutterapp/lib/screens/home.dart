@@ -35,7 +35,7 @@ class Home extends StatelessWidget {
                   title: Strings.today,
                   content: Strings.todayDetails,
                   weather: "Sunny",
-                  temperature: 70.0,
+                  temperature: 70,
                 ),
               ),
               Container(

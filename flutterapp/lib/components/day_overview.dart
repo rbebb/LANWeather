@@ -5,7 +5,7 @@ class DayOverview extends StatelessWidget {
   final String title;
   final String content;
   final String weather;
-  final double temperature;
+  final int temperature;
 
   const DayOverview({
     required this.title,
