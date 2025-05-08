@@ -4,14 +4,14 @@ import 'package:flutterapp/models/time_frame.dart';
 import 'package:flutterapp/strings.dart';
 
 class ForecastOverview extends StatelessWidget {
-  final Map<String, dynamic> weatherData;
+  final Map<String, dynamic>? weatherData;
 
   const ForecastOverview({required this.weatherData});
 
   @override
   Widget build(BuildContext context) {
-    final daily = TimeFrame.fromJson(weatherData["nws"]["daily"]);
-    final periodsOnlyDayTime = daily.periods
+    final daily = weatherData != null ? TimeFrame.fromJson(weatherData!["nws"]["daily"]) : null;
+    final periodsOnlyDayTime = daily?.periods
         .where((period) => period.isDaytime != null && period.isDaytime!)
         .toList()
         .take(7) // Get the first 7 entries in the list
@@ -37,7 +37,7 @@ class ForecastOverview extends StatelessWidget {
             ),
           ),
           ...buildRows(
-            periodsOnlyDayTime.map((period) => period.name ?? "").toList(),
+            periodsOnlyDayTime?.map((period) => period.name ?? "").toList(),
             [
               "assets/weather_icons/ic_sun.png",
               "assets/weather_icons/ic_sun.png",
@@ -47,7 +47,7 @@ class ForecastOverview extends StatelessWidget {
               "assets/weather_icons/ic_sun.png",
               "assets/weather_icons/ic_sun.png",
             ],
-            periodsOnlyDayTime.map((period) => "${period.temperature}º").toList(),
+            periodsOnlyDayTime?.map((period) => "${period.temperature}ºF").toList(),
           ),
         ],
       ),
@@ -56,9 +56,9 @@ class ForecastOverview extends StatelessWidget {
 }
 
 List<Widget> buildRows(
-  final List<String> days,
-  final List<String> imageLocations,
-  final List<String> temperatures,
+  final List<String>? days,
+  final List<String>? imageLocations,
+  final List<String>? temperatures,
 ) {
   return [
     // Unpack each row's group (List) of widgets with spread operator
@@ -69,9 +69,9 @@ List<Widget> buildRows(
       Flexible(
         flex: 1,
         child: ForecastOverviewRow(
-          day: days[i],
-          imageLocation: imageLocations[i],
-          temperature: temperatures[i],
+          day: days?[i] ?? "Monday",
+          imageLocation: imageLocations?[i] ?? "assets/weather_icons/ic_sun.png",
+          temperature: temperatures?[i] ?? "-1ºF",
         ),
       )
     ]

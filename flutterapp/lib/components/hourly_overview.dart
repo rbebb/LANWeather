@@ -32,7 +32,7 @@ class HourlyOverview extends StatelessWidget {
             child: HourlyOverviewRow(
               time: "1:00PM",
               imageLocation: "assets/weather_icons/ic_sun.png",
-              temperature: "70º",
+              temperature: "70ºF",
             ),
           ),
           Divider(
@@ -43,7 +43,7 @@ class HourlyOverview extends StatelessWidget {
             child: HourlyOverviewRow(
               time: "1:00PM",
               imageLocation: "assets/weather_icons/ic_sun.png",
-              temperature: "70º",
+              temperature: "70ºF",
             ),
           ),
           Divider(
@@ -54,7 +54,7 @@ class HourlyOverview extends StatelessWidget {
             child: HourlyOverviewRow(
               time: "1:00PM",
               imageLocation: "assets/weather_icons/ic_sun.png",
-              temperature: "70º",
+              temperature: "70ºF",
             ),
           ),
         ],
