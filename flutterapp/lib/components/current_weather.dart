@@ -4,13 +4,14 @@ import 'package:flutterapp/strings.dart';
 import 'package:sprintf/sprintf.dart';
 
 class CurrentWeather extends StatelessWidget {
-  final Map<String, dynamic> weatherData;
+  final Map<String, dynamic>? weatherData;
 
   const CurrentWeather({required this.weatherData});
 
   @override
   Widget build(BuildContext context) {
-    final current = Current.fromJson(weatherData["nws"]["current"]);
+    final current = weatherData != null ? Current.fromJson(weatherData!["nws"]["current"]) : null;
+    final double currentTempFahrenheit = current?.temperature != null ? (current!.temperature! * 1.8) + 32 : -1.0;
 
     return Row(
       children: [
@@ -29,7 +30,8 @@ class CurrentWeather extends StatelessWidget {
           child: Wrap(
             children: [
               Text(
-                sprintf(Strings.currentWeather, [current.relativeHumidity, current.windSpeed, current.temperature]),
+                sprintf(Strings.currentWeather,
+                    [current?.relativeHumidity ?? -1, current?.windSpeed ?? -1, currentTempFahrenheit]),
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 28,

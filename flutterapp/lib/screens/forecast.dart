@@ -11,42 +11,39 @@ class Forecast extends StatelessWidget {
     return FutureBuilder(
       future: fetchAllWeatherData(),
       builder: (context, snapshot) {
-        if (snapshot.data != null) {
-          final weatherData = snapshot.data as Map<String, dynamic>;
-          final daily = TimeFrame.fromJson(weatherData["nws"]["daily"]);
-          final tomorrow = daily.periods[1];
+        final weatherData = snapshot.data as Map<String, dynamic>?;
+        final daily = weatherData != null ? TimeFrame.fromJson(weatherData["nws"]["daily"]) : null;
+        final tomorrow = daily?.periods[1];
 
-          return ListView(
-            padding: const EdgeInsets.symmetric(vertical: 40.0),
-            children: [
-              Container(
-                margin: const EdgeInsets.only(top: 18.0),
-                alignment: Alignment.center,
-                child: Text(
-                  Strings.forecast,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 40,
-                  ),
+        return ListView(
+          padding: const EdgeInsets.symmetric(vertical: 40.0),
+          children: [
+            Container(
+              margin: const EdgeInsets.only(top: 18.0),
+              alignment: Alignment.center,
+              child: Text(
+                Strings.forecast,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 40,
                 ),
               ),
-              Container(
-                margin: const EdgeInsets.only(top: 25.0),
-                child: DayOverview(
-                  title: Strings.tomorrow,
-                  content: Strings.tomorrowDetails,
-                  weather: tomorrow.shortForecast ?? "Unknown",
-                  temperature: tomorrow.temperature ?? 0,
-                ),
+            ),
+            Container(
+              margin: const EdgeInsets.only(top: 25.0),
+              child: DayOverview(
+                title: Strings.tomorrow,
+                content: Strings.tomorrowDetails,
+                weather: tomorrow?.shortForecast ?? "Unknown",
+                temperature: tomorrow?.temperature ?? 0,
               ),
-              Container(
-                margin: const EdgeInsets.only(top: 25.0),
-                child: ForecastOverview(weatherData: weatherData),
-              )
-            ],
-          );
-        }
-        return Container();
+            ),
+            Container(
+              margin: const EdgeInsets.only(top: 25.0),
+              child: ForecastOverview(weatherData: weatherData),
+            )
+          ],
+        );
       },
     );
   }
