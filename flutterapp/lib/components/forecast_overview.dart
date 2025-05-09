@@ -47,7 +47,7 @@ class ForecastOverview extends StatelessWidget {
               "assets/weather_icons/ic_sun.png",
               "assets/weather_icons/ic_sun.png",
             ],
-            periodsOnlyDayTime?.map((period) => "${period.temperature}ºF").toList(),
+            periodsOnlyDayTime?.map((period) => "${period.temperature}").toList(),
           ),
         ],
       ),
@@ -60,9 +60,11 @@ List<Widget> buildRows(
   final List<String>? imageLocations,
   final List<String>? temperatures,
 ) {
-  return [
-    // Unpack each row's group (List) of widgets with spread operator
-    for (int i = 0; i < 7; i++) ...[
+  final List<Widget> rows = [];
+  // Unpack each row's group (List) of widgets with spread operator
+  for (int i = 0; i < 7; i++) {
+    final tempFahrenheit = (double.parse(temperatures?[i] ?? "-1") * 1.8) + 32;
+    rows.addAll([
       Divider(
         thickness: 3.0,
       ),
@@ -71,9 +73,10 @@ List<Widget> buildRows(
         child: ForecastOverviewRow(
           day: days?[i] ?? "Monday",
           imageLocation: imageLocations?[i] ?? "assets/weather_icons/ic_sun.png",
-          temperature: temperatures?[i] ?? "-1ºF",
+          temperature: "${tempFahrenheit.round()}ºF",
         ),
       )
-    ]
-  ];
+    ]);
+  }
+  return rows;
 }

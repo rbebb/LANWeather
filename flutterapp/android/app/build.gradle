@@ -57,7 +57,4 @@ flutter {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.5.1"
-
-    // JeroMQ (Java implementation of ZeroMQ) for connecting to the weather server
-    implementation "org.zeromq:jeromq:0.5.2"
 }

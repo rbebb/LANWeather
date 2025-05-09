@@ -34,6 +34,9 @@ dependencies:
   # String formatting (from naddiseo@naddiseo.ca) 
   sprintf: ^7.0.0
 
+  # ZMQ (from wirmo.de)
+  dartzmq: ^1.0.0-dev.17
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
