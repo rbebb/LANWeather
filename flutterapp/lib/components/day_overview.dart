@@ -16,6 +16,8 @@ class DayOverview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final tempFahrenheit = (temperature * 1.8) + 32;
+
     return Container(
       color: Colors.white,
       height: 300.0,
@@ -56,7 +58,7 @@ class DayOverview extends StatelessWidget {
                   flex: 3,
                   child: Center(
                     child: Text(
-                      sprintf(content, [weather, temperature]),
+                      sprintf(content, [weather, tempFahrenheit.round()]),
                       style: TextStyle(
                         color: Colors.grey,
                         fontSize: 24,
