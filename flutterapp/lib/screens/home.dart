@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterapp/components/current_weather.dart';
 import 'package:flutterapp/components/day_overview.dart';
 import 'package:flutterapp/components/hourly_overview.dart';
+import 'package:flutterapp/models/time_frame.dart';
 import 'package:flutterapp/services/weather_api.dart';
 import 'package:flutterapp/strings.dart';
 
@@ -12,6 +13,8 @@ class Home extends StatelessWidget {
       future: fetchAllWeatherData(),
       builder: (context, snapshot) {
         final Map<String, dynamic>? weatherData = snapshot.data;
+        final daily = weatherData != null ? TimeFrame.fromJson(weatherData["nws"]["daily"]) : null;
+        final today = daily?.periods[0];
 
         return ListView(
           padding: const EdgeInsets.symmetric(vertical: 40.0),
@@ -32,8 +35,8 @@ class Home extends StatelessWidget {
               child: DayOverview(
                 title: Strings.today,
                 content: Strings.todayDetails,
-                weather: "Sunny",
-                temperature: 70,
+                weather: today?.shortForecast ?? "Unknown",
+                temperature: today?.temperature ?? 0,
               ),
             ),
             Container(
