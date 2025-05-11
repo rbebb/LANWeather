@@ -11,7 +11,7 @@ class Forecast extends StatelessWidget {
     return FutureBuilder(
       future: fetchAllWeatherData(),
       builder: (context, snapshot) {
-        final weatherData = snapshot.data as Map<String, dynamic>?;
+        final Map<String, dynamic>? weatherData = snapshot.data;
         final daily = weatherData != null ? TimeFrame.fromJson(weatherData["nws"]["daily"]) : null;
         final tomorrow = daily?.periods[1];
 
