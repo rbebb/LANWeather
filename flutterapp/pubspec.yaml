@@ -37,6 +37,9 @@ dependencies:
   # ZMQ (from wirmo.de)
   dartzmq: ^1.0.0-dev.17
 
+  # Localization
+  intl: ^0.20.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

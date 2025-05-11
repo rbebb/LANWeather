@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 class HourlyOverviewRow extends StatelessWidget {
   final String time;
-  final String imageLocation;
+  final String shortForecast;
   final String temperature;
 
   const HourlyOverviewRow({
     required this.time,
-    required this.imageLocation,
+    required this.shortForecast,
     required this.temperature,
   });
 
@@ -31,14 +31,14 @@ class HourlyOverviewRow extends StatelessWidget {
           flex: 1,
           child: Center(
             child: Image.asset(
-              imageLocation,
+              "assets/weather_icons/ic_sun.png",
               height: 100.0,
               width: 100.0,
             ),
           ),
         ),
         Flexible(
-          flex: 2,
+          flex: 1,
           child: Center(
             child: Text(
               temperature,
