@@ -11,7 +11,7 @@ class Home extends StatelessWidget {
     return FutureBuilder(
       future: fetchAllWeatherData(),
       builder: (context, snapshot) {
-        final weatherData = snapshot.data as Map<String, dynamic>?;
+        final Map<String, dynamic>? weatherData = snapshot.data;
 
         return ListView(
           padding: const EdgeInsets.symmetric(vertical: 40.0),
@@ -38,7 +38,9 @@ class Home extends StatelessWidget {
             ),
             Container(
               margin: const EdgeInsets.only(top: 30.0),
-              child: HourlyOverview(),
+              child: HourlyOverview(
+                weatherData: weatherData,
+              ),
             )
           ],
         );
