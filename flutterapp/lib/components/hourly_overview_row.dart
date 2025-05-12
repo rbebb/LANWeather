@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterapp/utils/ImageUtils.dart';
 
 class HourlyOverviewRow extends StatelessWidget {
   final String time;
@@ -31,7 +32,7 @@ class HourlyOverviewRow extends StatelessWidget {
           flex: 1,
           child: Center(
             child: Image.asset(
-              "assets/weather_icons/ic_sun.png",
+              ImageUtils.getWeatherIconAsset(shortForecast) ?? "assets/weather_icons/ic_sun.png",
               height: 100.0,
               width: 100.0,
             ),

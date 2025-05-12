@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutterapp/utils/ImageUtils.dart';
 
 class ForecastOverviewRow extends StatelessWidget {
   final String day;
-  final String imageLocation;
+  final String shortForecast;
   final String temperature;
 
   const ForecastOverviewRow({
     required this.day,
-    required this.imageLocation,
+    required this.shortForecast,
     required this.temperature,
   });
 
@@ -31,7 +32,7 @@ class ForecastOverviewRow extends StatelessWidget {
           flex: 1,
           child: Center(
             child: Image.asset(
-              imageLocation,
+              ImageUtils.getWeatherIconAsset(shortForecast) ?? "assets/weather_icons/ic_sun.png",
               height: 100.0,
               width: 100.0,
             ),
