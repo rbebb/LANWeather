@@ -38,15 +38,7 @@ class ForecastOverview extends StatelessWidget {
           ),
           ...buildRows(
             periodsOnlyDayTime?.map((period) => period.name ?? "").toList(),
-            [
-              "assets/weather_icons/ic_sun.png",
-              "assets/weather_icons/ic_sun.png",
-              "assets/weather_icons/ic_sun.png",
-              "assets/weather_icons/ic_sun.png",
-              "assets/weather_icons/ic_sun.png",
-              "assets/weather_icons/ic_sun.png",
-              "assets/weather_icons/ic_sun.png",
-            ],
+            periodsOnlyDayTime?.map((period) => period.shortForecast).toList(),
             periodsOnlyDayTime?.map((period) => "${period.temperature}").toList(),
           ),
         ],
@@ -57,7 +49,7 @@ class ForecastOverview extends StatelessWidget {
 
 List<Widget> buildRows(
   final List<String>? days,
-  final List<String>? imageLocations,
+  final List<String?>? shortForecast,
   final List<String>? temperatures,
 ) {
   final List<Widget> rows = [];
@@ -72,7 +64,7 @@ List<Widget> buildRows(
         flex: 1,
         child: ForecastOverviewRow(
           day: days?[i] ?? "Monday",
-          imageLocation: imageLocations?[i] ?? "assets/weather_icons/ic_sun.png",
+          shortForecast: shortForecast?[i] ?? "Clear",
           temperature: "${tempFahrenheit.round()}ºF",
         ),
       )
