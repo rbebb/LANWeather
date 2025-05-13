@@ -1,6 +1,6 @@
 # LAN Weather
 
-Local weather service that runs on Linux and provides data for a user to see in an Android app.
+Local weather service that runs on Linux and provides data for a user to see in an app that runs on iOS, Android, and Linux.
 
 ## Introduction
 
@@ -48,9 +48,17 @@ The Arduino code must be flashed to the Arduino using the Arduino app. When flas
 
 #### App
 
+To build the app, you'll need to install [Flutter](https://docs.flutter.dev/get-started/install).
+
+If building for Android, install Android Studio and configure an emulator. This project supports Android 8.0 and higher.
+
 - [Android Studio](https://developer.android.com/studio)
 
-Install Android Studio and configure an emulator. This project supports Android 7.0 and higher, so make sure to pick an emulator that is at least Android 7.0.
+If building for iOS, install Xcode and configure an emulator. We recommend using iOS 16 and higher.
+
+- [Xcode](https://developer.apple.com/xcode/)
+
+If building for Linux, there is nothing extra to install.
 
 ### Run
 
@@ -64,7 +72,10 @@ Plug the temperature sensor into the USB port of your computer.
 
 #### Start App
 
-Open the androidapp folder in Android Studio and click the run button (looks like a play button) at the top right of the window.
+Open the `flutterapp/` folder in your terminal use one fo the following commands:
+
+- `flutter run` for debug mode
+- `flutter run --release` for release mode
 
 ## Demo Video
 
