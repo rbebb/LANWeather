@@ -1,0 +1,8 @@
+[package]
+name = "tempsensord"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+i2cdev = "=0.4.4"
+si7021 = "=0.2.0"
