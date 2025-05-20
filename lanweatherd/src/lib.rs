@@ -17,9 +17,24 @@ fn call_api() -> Result<CString, reqwest::Error> {
     let client = reqwest::blocking::Client::builder()
         .user_agent("(lanweather, castlet1@wit.edu)")
         .build()?;
-    let current = client.get("https://api.weather.gov/gridpoints/BOX/72,51").send()?.text()?;
-    let dforecast = client.get("https://api.weather.gov/gridpoints/BOX/72,51/forecast?units=si").send()?.text()?;
-    let hforecast = client.get("https://api.weather.gov/gridpoints/BOX/72,51/forecast/hourly?units=si").send()?.text()?;
+    let location_metadata = client.get("https://api.weather.gov/points/42,-71").send()?.text()?;
+
+    // some naïve error checking
+    let parsed_location_metadata = if location_metadata.as_bytes()[0] as char == '{' {json::parse(&location_metadata).unwrap()} else {json::parse("{\"bad\": true}").unwrap()};
+    // grab the parts we want
+    let location_metadata_values = if !parsed_location_metadata.has_key("bad") {object!{
+        "metadata": {
+            "current": parsed_location_metadata["properties"]["forecastGridData"].clone(),
+            "hourly": parsed_location_metadata["properties"]["forecastHourly"].clone(),
+            "daily": parsed_location_metadata["properties"]["forecast"].clone(),
+        }
+    }} else {object!{
+        "metadata": false
+    }};
+
+    let current = client.get(format!("{}", location_metadata_values["metadata"]["current"])).send()?.text()?;
+    let dforecast = client.get(format!("{}?units=si", location_metadata_values["metadata"]["daily"])).send()?.text()?;
+    let hforecast = client.get(format!("{}?units=si", location_metadata_values["metadata"]["hourly"])).send()?.text()?;
 
     // some naïve error checking
     let parsed_current = if current.as_bytes()[0] as char == '{' {json::parse(&current).unwrap()} else {json::parse("{\"bad\": true}").unwrap()};
