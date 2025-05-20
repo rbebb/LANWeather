@@ -6,18 +6,18 @@ use std::os::raw::c_char;
 use json::object;
 
 #[no_mangle] // don't mangle the name
-pub extern "C" fn nws_req() -> *const c_char { // returns a pointer to a c char array
-    let s = call_api().unwrap();
+pub extern "C" fn nws_req(latitude: String, longitude: String) -> *const c_char { // returns a pointer to a c char array
+    let s = call_api(latitude, longitude).unwrap();
     let p = s.as_ptr(); // get a pointer to the CString
     std::mem::forget(s); // don't have rust free the memory so c can use it
     return p; // return the pointer
 }
 
-fn call_api() -> Result<CString, reqwest::Error> {
+fn call_api(latitude: String, longitude: String) -> Result<CString, reqwest::Error> {
     let client = reqwest::blocking::Client::builder()
         .user_agent("(lanweather, castlet1@wit.edu)")
         .build()?;
-    let location_metadata = client.get("https://api.weather.gov/points/42,-71").send()?.text()?;
+    let location_metadata = client.get(format!("https://api.weather.gov/points/{},{}", latitude, longitude)).send()?.text()?;
 
     // some naïve error checking
     let parsed_location_metadata = if location_metadata.as_bytes()[0] as char == '{' {json::parse(&location_metadata).unwrap()} else {json::parse("{\"bad\": true}").unwrap()};

@@ -1,11 +1,12 @@
 #include <unistd.h>
 #include <cstdlib>
 #include <cstring>
+#include <string>
 #include <zmq.h>
 
 #include "rep_loop.h"
 
-void rep_loop(recent_data& cache) {
+void rep_loop(recent_data& cache, std::string* latitude, std::string* longitude) {
     void *context = zmq_ctx_new();
     void *responder = zmq_socket(context, ZMQ_REP);
     zmq_bind(responder, "tcp://*:5680");

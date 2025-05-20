@@ -81,10 +81,12 @@ int main(void) {
     close(STDERR_FILENO);
 
     recent_data& cache = recent_data::get_instance();
+    std::string* latitude;
+    std::string* longitude;
 
     vector<thread> threads;
 
-    thread thr_nws_fetch(nws_loop, ref(cache));
+    thread thr_nws_fetch(nws_loop, ref(cache), latitude, longitude);
     threads.push_back(move(thr_nws_fetch)); // n.b. thread objects can't be copied
 
     thread thr_sensors_recv(sensor_loop, ref(cache));
@@ -93,7 +95,7 @@ int main(void) {
     thread thr_bcast_all(pub_loop, ref(cache));
     threads.push_back(move(thr_bcast_all));
 
-    thread thr_req_manager(rep_loop, ref(cache));
+    thread thr_req_manager(rep_loop, ref(cache), latitude, longitude);
     threads.push_back(move(thr_req_manager));
 
     for (unsigned int i = 0; i < threads.size(); i++) {
