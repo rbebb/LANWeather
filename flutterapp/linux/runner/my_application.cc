@@ -28,10 +28,14 @@ static void my_application_activate(GApplication* application) {
   path execDir = canonical(read_symlink("/proc/self/exe")).parent_path();
   path iconPath = execDir / "data/flutter_assets" / iconFilename;
   
+  GError* error = NULL;
   GdkPixbuf* icon = gdk_pixbuf_new_from_file(iconPath.c_str(), NULL);
   if (icon != NULL) {
     gtk_window_set_icon(GTK_WINDOW(window), icon);
     g_object_unref(icon);
+  } else {
+    cerr << "Error loading icon from " << iconPath << ": " << error->message << endl;
+    g_error_free(error);
   }
   // Use a header bar when running in GNOME as this is the common style used
   // by applications and is the setup most users will be using (e.g. Ubuntu
