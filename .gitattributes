@@ -1,1 +1,2 @@
+# Exclude archive from GitHub language stats
 archive/** linguist-vendored
