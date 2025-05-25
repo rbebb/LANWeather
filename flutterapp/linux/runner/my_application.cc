@@ -28,7 +28,7 @@ static void my_application_activate(GApplication* application) {
   path execDir = canonical(read_symlink("/proc/self/exe")).parent_path();
   path iconPath = execDir / "data/flutter_assets" / iconFilename;
   
-  GdkPixbuf* icon = gdk_pixbuf_new_from_file(iconPath);
+  GdkPixbuf* icon = gdk_pixbuf_new_from_file(iconPath, NULL);
   if (icon != NULL) {
     gtk_window_set_icon(GTK_WINDOW(window), icon);
     g_object_unref(icon);
