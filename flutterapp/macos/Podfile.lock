@@ -1,0 +1,22 @@
+PODS:
+  - dartzmq (1.0.0-dev.18):
+    - FlutterMacOS
+  - FlutterMacOS (1.0.0)
+
+DEPENDENCIES:
+  - dartzmq (from `Flutter/ephemeral/.symlinks/plugins/dartzmq/macos`)
+  - FlutterMacOS (from `Flutter/ephemeral`)
+
+EXTERNAL SOURCES:
+  dartzmq:
+    :path: Flutter/ephemeral/.symlinks/plugins/dartzmq/macos
+  FlutterMacOS:
+    :path: Flutter/ephemeral
+
+SPEC CHECKSUMS:
+  dartzmq: 9f6e07c7f1ff35e7a2413933fe51772056d56a81
+  FlutterMacOS: d0db08ddef1a9af05a5ec4b724367152bb0500b1
+
+PODFILE CHECKSUM: 89c84cf5c2351c1e554c6dea18d31a879fc3a19e
+
+COCOAPODS: 1.16.2
