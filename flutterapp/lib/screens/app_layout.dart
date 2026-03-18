@@ -35,16 +35,19 @@ class _AppLayoutState extends State<AppLayout> {
                 IndexedStack(index: _selectedIndex, children: [Home(), Forecast(), Settings()]),
               ],
             ),
-            bottomNavigationBar: BottomNavigationBar(
-              items: const [
-                BottomNavigationBarItem(icon: const Icon(Icons.home), label: Strings.home),
-                BottomNavigationBarItem(icon: const Icon(Icons.cloud), label: Strings.forecast),
-                BottomNavigationBarItem(icon: const Icon(Icons.settings), label: Strings.settings),
-              ],
-              currentIndex: _selectedIndex,
-              onTap: (index) {
-                _onItemTapped(index);
+            bottomNavigationBar: NavigationBar(
+              onDestinationSelected: (int index) {
+                setState(() {
+                  _selectedIndex = index;
+                });
               },
+              selectedIndex: _selectedIndex,
+              destinations: const <NavigationDestination>[
+                NavigationDestination(icon: const Icon(Icons.home), label: Strings.home),
+                NavigationDestination(icon: const Icon(Icons.cloud), label: Strings.forecast),
+                NavigationDestination(icon: const Icon(Icons.settings), label: Strings.settings),
+              ],
+              indicatorColor: Colors.purple[100],
             ),
           )
         : Scaffold(
