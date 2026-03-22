@@ -8,6 +8,8 @@ import 'package:flutterapp/strings.dart';
 class Forecast extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    bool isMobile = MediaQuery.of(context).size.width < 600;
+
     return FutureBuilder(
       future: fetchAllWeatherData(),
       builder: (context, snapshot) {
@@ -15,35 +17,62 @@ class Forecast extends StatelessWidget {
         final daily = weatherData != null ? TimeFrame.fromJson(weatherData["nws"]["daily"]) : null;
         final tomorrow = daily?.periods[1];
 
-        return ListView(
-          padding: const EdgeInsets.symmetric(vertical: 40.0),
-          children: [
-            Container(
-              margin: const EdgeInsets.only(top: 18.0),
-              alignment: Alignment.center,
-              child: Text(
-                Strings.forecast,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 40,
-                ),
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.only(top: 25.0),
-              child: DayOverview(
-                title: Strings.tomorrow,
-                content: Strings.tomorrowDetails,
-                weather: tomorrow?.shortForecast ?? "Unknown",
-                temperature: tomorrow?.temperature ?? 0,
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.only(top: 25.0),
-              child: ForecastOverview(weatherData: weatherData),
-            )
-          ],
-        );
+        return isMobile
+            ? ListView(
+                padding: const EdgeInsets.symmetric(vertical: 40.0),
+                children: [
+                  Container(
+                    margin: const EdgeInsets.only(top: 18.0),
+                    alignment: Alignment.center,
+                    child: Text(Strings.forecast, style: TextStyle(color: Colors.white, fontSize: 40)),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(top: 25.0),
+                    child: DayOverview(
+                      title: Strings.tomorrow,
+                      content: Strings.tomorrowDetails,
+                      weather: tomorrow?.shortForecast ?? "Unknown",
+                      temperature: tomorrow?.temperature ?? 0,
+                    ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(top: 25.0),
+                    child: ForecastOverview(weatherData: weatherData),
+                  ),
+                ],
+              )
+            : ListView(
+                padding: const EdgeInsets.symmetric(vertical: 20.0),
+                children: [
+                  Container(
+                    margin: const EdgeInsets.only(top: 18.0),
+                    alignment: Alignment.center,
+                    child: Text(Strings.forecast, style: TextStyle(color: Colors.white, fontSize: 40)),
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: Container(
+                          margin: const EdgeInsets.only(top: 25.0),
+                          child: DayOverview(
+                            title: Strings.tomorrow,
+                            content: Strings.tomorrowDetails,
+                            weather: tomorrow?.shortForecast ?? "Unknown",
+                            temperature: tomorrow?.temperature ?? 0,
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Container(
+                          margin: const EdgeInsets.only(top: 25.0),
+                          child: ForecastOverview(weatherData: weatherData),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              );
       },
     );
   }
