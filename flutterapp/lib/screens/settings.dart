@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutterapp/strings.dart';
+import 'package:lanweatherapp/strings.dart';
 
 class Settings extends StatelessWidget {
   @override

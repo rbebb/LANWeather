@@ -1,4 +1,4 @@
-import 'package:flutterapp/models/period.dart';
+import 'package:lanweatherapp/models/period.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'time_frame.g.dart';

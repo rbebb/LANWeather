@@ -1,4 +1,4 @@
-import 'package:flutterapp/models/weather.dart';
+import 'package:lanweatherapp/models/weather.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'current.g.dart';
@@ -29,8 +29,7 @@ class Current {
     this.probabilityOfPrecipitation,
   );
 
-  factory Current.fromJson(Map<String, dynamic> json) =>
-      _$CurrentFromJson(json);
+  factory Current.fromJson(Map<String, dynamic> json) => _$CurrentFromJson(json);
 
   Map<String, dynamic> toJson() => _$CurrentToJson(this);
 }

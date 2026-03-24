@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutterapp/screens/forecast.dart';
-import 'package:flutterapp/screens/home.dart';
-import 'package:flutterapp/screens/settings.dart';
-import 'package:flutterapp/strings.dart';
+import 'package:lanweatherapp/screens/forecast.dart';
+import 'package:lanweatherapp/screens/home.dart';
+import 'package:lanweatherapp/screens/settings.dart';
+import 'package:lanweatherapp/strings.dart';
 
 class AppLayout extends StatefulWidget {
   @override
