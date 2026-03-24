@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.lanweather.flutterapp"
+    namespace = "com.lanweather.lanweatherapp"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -20,7 +20,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.lanweather.flutterapp"
+        applicationId = "com.lanweather.lanweatherapp"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion
