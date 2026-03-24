@@ -1,3 +1,22 @@
-PODFILE CHECKSUM: 85018c1379a907f4a2d0212bceac9720751e3007
+PODS:
+  - dartzmq (1.0.0-dev.18):
+    - Flutter
+  - Flutter (1.0.0)
+
+DEPENDENCIES:
+  - dartzmq (from `.symlinks/plugins/dartzmq/ios`)
+  - Flutter (from `Flutter`)
+
+EXTERNAL SOURCES:
+  dartzmq:
+    :path: ".symlinks/plugins/dartzmq/ios"
+  Flutter:
+    :path: Flutter
+
+SPEC CHECKSUMS:
+  dartzmq: 6d14d9ed367321d84f3df19b0c764ffc228a8d71
+  Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
+
+PODFILE CHECKSUM: 251cb053df7158f337c0712f2ab29f4e0fa474ce
 
 COCOAPODS: 1.16.2
