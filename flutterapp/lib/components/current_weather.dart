@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutterapp/models/current.dart';
-import 'package:flutterapp/strings.dart';
+import 'package:lanweatherapp/models/current.dart';
+import 'package:lanweatherapp/strings.dart';
 import 'package:sprintf/sprintf.dart';
 
 class CurrentWeather extends StatelessWidget {
@@ -18,11 +18,7 @@ class CurrentWeather extends StatelessWidget {
         Flexible(
           flex: 1,
           fit: FlexFit.tight,
-          child: Image.asset(
-            'assets/weather_icons/ic_sun.png',
-            height: 100.0,
-            width: 100.0,
-          ),
+          child: Image.asset('assets/weather_icons/ic_sun.png', height: 100.0, width: 100.0),
         ),
         Flexible(
           flex: 2,
@@ -30,16 +26,16 @@ class CurrentWeather extends StatelessWidget {
           child: Wrap(
             children: [
               Text(
-                sprintf(Strings.currentWeather,
-                    [current?.relativeHumidity ?? -1, current?.windSpeed ?? -1, currentTempFahrenheit]),
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 28,
-                ),
+                sprintf(Strings.currentWeather, [
+                  current?.relativeHumidity ?? -1,
+                  current?.windSpeed ?? -1,
+                  currentTempFahrenheit,
+                ]),
+                style: TextStyle(color: Colors.white, fontSize: 28),
               ),
             ],
           ),
-        )
+        ),
       ],
     );
   }

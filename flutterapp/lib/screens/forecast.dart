@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutterapp/components/day_overview.dart';
-import 'package:flutterapp/components/forecast_overview.dart';
-import 'package:flutterapp/models/time_frame.dart';
-import 'package:flutterapp/services/weather_api.dart';
-import 'package:flutterapp/strings.dart';
+import 'package:lanweatherapp/components/day_overview.dart';
+import 'package:lanweatherapp/components/forecast_overview.dart';
+import 'package:lanweatherapp/models/time_frame.dart';
+import 'package:lanweatherapp/services/weather_api.dart';
+import 'package:lanweatherapp/strings.dart';
 
 class Forecast extends StatelessWidget {
   @override

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutterapp/components/forecast_overview_row.dart';
-import 'package:flutterapp/models/time_frame.dart';
-import 'package:flutterapp/strings.dart';
+import 'package:lanweatherapp/components/forecast_overview_row.dart';
+import 'package:lanweatherapp/models/time_frame.dart';
+import 'package:lanweatherapp/strings.dart';
 
 class ForecastOverview extends StatelessWidget {
   final Map<String, dynamic>? weatherData;
@@ -27,13 +27,7 @@ class ForecastOverview extends StatelessWidget {
           Flexible(
             flex: 1,
             child: Center(
-              child: Text(
-                Strings.sevenDayForecast,
-                style: TextStyle(
-                  color: Colors.grey,
-                  fontSize: 24,
-                ),
-              ),
+              child: Text(Strings.sevenDayForecast, style: TextStyle(color: Colors.grey, fontSize: 24)),
             ),
           ),
           ...buildRows(
@@ -47,19 +41,13 @@ class ForecastOverview extends StatelessWidget {
   }
 }
 
-List<Widget> buildRows(
-  final List<String>? days,
-  final List<String?>? shortForecast,
-  final List<String>? temperatures,
-) {
+List<Widget> buildRows(final List<String>? days, final List<String?>? shortForecast, final List<String>? temperatures) {
   final List<Widget> rows = [];
   // Unpack each row's group (List) of widgets with spread operator
   for (int i = 0; i < 7; i++) {
     final tempFahrenheit = (double.parse(temperatures?[i] ?? "-1") * 1.8) + 32;
     rows.addAll([
-      Divider(
-        thickness: 3.0,
-      ),
+      Divider(thickness: 3.0),
       Flexible(
         flex: 1,
         child: ForecastOverviewRow(
@@ -67,7 +55,7 @@ List<Widget> buildRows(
           shortForecast: shortForecast?[i] ?? "Clear",
           temperature: "${tempFahrenheit.round()}ºF",
         ),
-      )
+      ),
     ]);
   }
   return rows;

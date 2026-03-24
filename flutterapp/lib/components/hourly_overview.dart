@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutterapp/components/hourly_overview_row.dart';
-import 'package:flutterapp/models/time_frame.dart';
-import 'package:flutterapp/strings.dart';
+import 'package:lanweatherapp/components/hourly_overview_row.dart';
+import 'package:lanweatherapp/models/time_frame.dart';
+import 'package:lanweatherapp/strings.dart';
 import 'package:intl/intl.dart';
 
 class HourlyOverview extends StatelessWidget {
@@ -28,13 +28,7 @@ class HourlyOverview extends StatelessWidget {
           Flexible(
             flex: 1,
             child: Center(
-              child: Text(
-                Strings.hourly,
-                style: TextStyle(
-                  color: Colors.grey,
-                  fontSize: 24,
-                ),
-              ),
+              child: Text(Strings.hourly, style: TextStyle(color: Colors.grey, fontSize: 24)),
             ),
           ),
           ...buildRows(
@@ -61,9 +55,7 @@ List<Widget> buildRows(
     final String? timeFormatted = time != null ? DateFormat.jm().format(time) : null;
 
     rows.addAll([
-      Divider(
-        thickness: 3.0,
-      ),
+      Divider(thickness: 3.0),
       Flexible(
         flex: 1,
         child: HourlyOverviewRow(
@@ -71,7 +63,7 @@ List<Widget> buildRows(
           shortForecast: shortForecast?[i] ?? "Clear",
           temperature: "${tempFahrenheit.round()}ºF",
         ),
-      )
+      ),
     ]);
   }
   return rows;

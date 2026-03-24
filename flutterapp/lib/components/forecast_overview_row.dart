@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutterapp/utils/ImageUtils.dart';
+import 'package:lanweatherapp/utils/ImageUtils.dart';
 
 class ForecastOverviewRow extends StatelessWidget {
   final String day;
   final String shortForecast;
   final String temperature;
 
-  const ForecastOverviewRow({
-    required this.day,
-    required this.shortForecast,
-    required this.temperature,
-  });
+  const ForecastOverviewRow({required this.day, required this.shortForecast, required this.temperature});
 
   @override
   Widget build(BuildContext context) {
@@ -19,13 +15,7 @@ class ForecastOverviewRow extends StatelessWidget {
         Flexible(
           flex: 1,
           child: Center(
-            child: Text(
-              day,
-              style: TextStyle(
-                color: Colors.grey,
-                fontSize: 24,
-              ),
-            ),
+            child: Text(day, style: TextStyle(color: Colors.grey, fontSize: 24)),
           ),
         ),
         Flexible(
@@ -41,13 +31,7 @@ class ForecastOverviewRow extends StatelessWidget {
         Flexible(
           flex: 1,
           child: Center(
-            child: Text(
-              temperature,
-              style: TextStyle(
-                color: Colors.grey,
-                fontSize: 24,
-              ),
-            ),
+            child: Text(temperature, style: TextStyle(color: Colors.grey, fontSize: 24)),
           ),
         ),
       ],
