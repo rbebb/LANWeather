@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:lanweatherapp/screens/app_layout.dart';
+import 'package:lanweatherapp/services/preferences.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Preferences.init();
   runApp(MyApp());
 }
 

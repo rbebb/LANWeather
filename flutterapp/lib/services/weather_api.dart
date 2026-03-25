@@ -1,10 +1,11 @@
 import 'dart:convert';
 
 import 'package:dartzmq/dartzmq.dart';
+import 'package:lanweatherapp/services/preferences.dart';
 
 Future<Map<String, dynamic>?> fetchAllWeatherData() async {
-  const String url = "tcp://localhost:5680";
   const String data = "launch the nukes";
+  String url = Preferences.getWeatherServerUrl();
 
   try {
     // TODO: Do we need to specify the number of threads?
