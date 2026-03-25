@@ -2,27 +2,20 @@ PODS:
   - dartzmq (1.0.0-dev.18):
     - FlutterMacOS
   - FlutterMacOS (1.0.0)
-  - shared_preferences_foundation (0.0.1):
-    - Flutter
-    - FlutterMacOS
 
 DEPENDENCIES:
   - dartzmq (from `Flutter/ephemeral/.symlinks/plugins/dartzmq/macos`)
   - FlutterMacOS (from `Flutter/ephemeral`)
-  - shared_preferences_foundation (from `Flutter/ephemeral/.symlinks/plugins/shared_preferences_foundation/darwin`)
 
 EXTERNAL SOURCES:
   dartzmq:
     :path: Flutter/ephemeral/.symlinks/plugins/dartzmq/macos
   FlutterMacOS:
     :path: Flutter/ephemeral
-  shared_preferences_foundation:
-    :path: Flutter/ephemeral/.symlinks/plugins/shared_preferences_foundation/darwin
 
 SPEC CHECKSUMS:
   dartzmq: 9f6e07c7f1ff35e7a2413933fe51772056d56a81
   FlutterMacOS: d0db08ddef1a9af05a5ec4b724367152bb0500b1
-  shared_preferences_foundation: 5086985c1d43c5ba4d5e69a4e8083a389e2909e6
 
 PODFILE CHECKSUM: 89c84cf5c2351c1e554c6dea18d31a879fc3a19e
 
