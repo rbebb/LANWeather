@@ -5,6 +5,15 @@ use std::ffi::CString;
 use std::os::raw::c_char;
 use json::object;
 
+
+// Imports from WIP code
+/////////
+use std::ffi::CStr;
+use std::ffi::CString;
+use std::os::raw::c_char;
+/////////
+
+
 #[no_mangle] // don't mangle the name
 pub extern "C" fn nws_req() -> *const c_char { // returns a pointer to a c char array
     let s = call_api().unwrap();
@@ -74,3 +83,74 @@ fn call_api() -> Result<CString, reqwest::Error> {
     let s = CString::new(package.dump()).unwrap();
     return Ok(s);
 }
+
+
+
+// Start of C++ rewrite
+/////////////////////////////////////////
+
+// main.cpp
+
+
+
+// new_loop.cpp
+
+
+
+// pub_loop.cpp
+
+
+
+// recent_data.cpp
+struct recent_data {
+    nws_data: String,
+    sensor_data: String
+}
+impl recent_data {
+    fn update_nws_data(ptr: *const c_char) {
+        if let Ok(new_data) = CStr::from_ptr(ptr).to_str() {
+            self.nws_data = new_data;
+        }
+    }
+    fn update_sensor_data(ptr: *const c_char) {
+        if let Ok(new_data) = CStr::from_ptr(ptr).to_str() {
+            self.sensor_data = new_data;
+        }
+    }
+    fn get_data_bundle() -> *mut c_char {
+        // {\"nws\":%,\"sensor\":%}
+        let msg = format!(
+            "{\"nws\":{},\"sensor\":{}}",
+            self.nws_data,
+            self.sensor_data
+        );
+        CString::new(msg).into_raw();
+    }
+}
+static mut RECENT_DATA: recent_data = recent_data {
+    new_data: new_data,
+    sensor_data: sensor_data
+}
+
+
+// Example code from Rust book
+// Reference: https://doc.rust-lang.org/stable/embedded-book/peripherals/singletons.html#how-do-we-do-this-in-rust
+struct Peripherals {
+    serial: Option<SerialPort>,
+}
+impl Peripherals {
+    fn take_serial(&mut self) -> SerialPort {
+        let p = replace(&mut self.serial, None);
+        p.unwrap()
+    }
+}
+static mut PERIPHERALS: Peripherals = Peripherals {
+    serial: Some(SerialPort),
+};
+
+
+// rep_loop.cpp
+
+
+
+// sensor_loop.cpp
