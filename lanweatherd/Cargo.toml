@@ -13,3 +13,5 @@ crate-type = ["dylib"]
 [dependencies]
 reqwest = { version = "*", features = ["blocking", "json"] }
 json = "*"
+zeromq = ">=0.6.0,<0.7.0"
+
