@@ -11,7 +11,9 @@ use json::object;
 use std::ffi::CStr;
 use std::thread;
 use std::time::Duration;
-/////////
+
+
+use zeromq::*;
 
 
 #[no_mangle] // don't mangle the name
@@ -203,7 +205,7 @@ static mut RECENT_DATA: RecentData = RecentData {
 
 // Example code from Rust book
 // Reference: https://doc.rust-lang.org/stable/embedded-book/peripherals/singletons.html#how-do-we-do-this-in-rust
-// struct Peripherals {
+//struct Peripherals {
 //     serial: Option<SerialPort>,
 // }
 // impl Peripherals {
@@ -222,3 +224,33 @@ static mut RECENT_DATA: RecentData = RecentData {
 
 
 // sensor_loop.cpp
+//
+//
+// sd
+
+
+
+
+
+const PUB_PRE_SLEEP_INTERVAL: u64 = 1; // every 20 minutes
+const PUB_SLEEP_INTERVAL: u64 = 60; // every 20 minutes
+
+async fn pub_loop(cache: RecentData) -> Result<(), Box<dyn std::error::Error>> {
+    println!("Start server");
+    let mut socket = zeromq::PubSocket::new();
+    socket.bind("tcp://127.0.0.1:5670").await?;
+
+    println!("Start sending loop");
+
+    thread::sleep(Duration::from_mins(PUB_PRE_SLEEP_INTERVAL));
+    loop {
+        
+
+        socket
+            .send(cache.get_data_bundle().into())
+            .await?;
+
+        thread::sleep(Duration::from_mins(PUB_SLEEP_INTERVAL));
+
+    }
+}
