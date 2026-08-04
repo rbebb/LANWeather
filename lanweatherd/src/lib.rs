@@ -155,12 +155,7 @@ fn call_api() -> Result<String, reqwest::Error> {
     return Ok(s);
 }
 
-// main.cpp
-
-
-
 // nws_loop.cpp
-
 const NWS_SLEEP_INTERVAL: u64 = 20; // every 20 minutes
 
 fn nws_loop(mut cache: RecentData) {
@@ -173,8 +168,73 @@ fn nws_loop(mut cache: RecentData) {
 }
 
 // pub_loop.cpp
+const PUB_PRE_SLEEP_INTERVAL: u64 = 1; // every minute
+const PUB_SLEEP_INTERVAL: u64 = 60; // every 60 minutes
 
+/// Publishes data at a set interval.
+/// 
+/// Would be useful/impactful if tied with a database.
+/// 
+/// * `cache` - The cache of data to publish.
+/// 
+/// Returns an error if one occurs; otherwise runs indefinitely.
+async fn pub_loop(cache: RecentData) -> Result<(), Box<dyn std::error::Error>> {
+    let mut socket = zeromq::PubSocket::new();
+    socket.bind("tcp://127.0.0.1:5670").await?;
 
+    println!("Start loop for publishing");
+
+    thread::sleep(Duration::from_mins(PUB_PRE_SLEEP_INTERVAL));
+    loop {
+        socket
+            .send(cache.get_data_bundle().into())
+            .await?;
+
+        thread::sleep(Duration::from_mins(PUB_SLEEP_INTERVAL));
+    }
+}
+
+// rep_loop.cpp
+
+/// Send back data when a client requests data.
+/// 
+/// We don't care about the contents of what a client sends
+/// to the server because we just need to know if a client wants data.
+///
+/// * `cache` - The cache of data to publish.
+///
+/// Returns an error if one occurs; otherwise runs indefinitely.
+async fn rep_loop(cache: RecentData) -> Result<(), Box<dyn std::error::Error>> {
+    let mut socket = zeromq::RepSocket::new();
+    socket.bind("tcp://*:5680").await?;
+
+    println!("Start loop for replying");
+
+    loop {
+        // Wait until client requests data (we don't need to know the contents of the message)
+        socket.recv().await?;
+        // Send some data back
+        socket
+            .send(cache.get_data_bundle().into())
+            .await?;
+    }
+}
+
+// sensor_loop.cpp
+async fn sensor_loop(mut cache: RecentData) -> Result<(), Box<dyn std::error::Error>> {
+    let mut socket = zeromq::SubSocket::new();
+    // TODO: We might need to use .connect() instead of .bind()
+    socket.bind("tcp://*:5676").await?;
+    socket.subscribe("").await?;
+
+    loop {
+        let reply = socket.recv().await?;
+        let data = reply.get(0).unwrap();
+        // TODO: There has to be a better way to do this
+        let data_str = std::str::from_utf8(data).ok().unwrap().to_string();
+        cache.update_sensor_data(data_str);
+    }
+}
 
 // recent_data.cpp
 struct RecentData {
@@ -197,60 +257,8 @@ impl RecentData {
         )
     }
 }
+/// Singleton of `RecentData`
 static mut RECENT_DATA: RecentData = RecentData {
     nws_data: String::new(),
     sensor_data: String::new(),
 };
-
-
-// Example code from Rust book
-// Reference: https://doc.rust-lang.org/stable/embedded-book/peripherals/singletons.html#how-do-we-do-this-in-rust
-//struct Peripherals {
-//     serial: Option<SerialPort>,
-// }
-// impl Peripherals {
-//     fn take_serial(&mut self) -> SerialPort {
-//         let p = replace(&mut self.serial, None);
-//         p.unwrap()
-//     }
-// }
-// static mut PERIPHERALS: Peripherals = Peripherals {
-//     serial: Some(SerialPort),
-// };
-
-
-// rep_loop.cpp
-
-
-
-// sensor_loop.cpp
-//
-//
-// sd
-
-
-
-
-
-const PUB_PRE_SLEEP_INTERVAL: u64 = 1; // every 20 minutes
-const PUB_SLEEP_INTERVAL: u64 = 60; // every 20 minutes
-
-async fn pub_loop(cache: RecentData) -> Result<(), Box<dyn std::error::Error>> {
-    println!("Start server");
-    let mut socket = zeromq::PubSocket::new();
-    socket.bind("tcp://127.0.0.1:5670").await?;
-
-    println!("Start sending loop");
-
-    thread::sleep(Duration::from_mins(PUB_PRE_SLEEP_INTERVAL));
-    loop {
-        
-
-        socket
-            .send(cache.get_data_bundle().into())
-            .await?;
-
-        thread::sleep(Duration::from_mins(PUB_SLEEP_INTERVAL));
-
-    }
-}
