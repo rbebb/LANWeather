@@ -158,7 +158,7 @@ fn call_api() -> Result<String, reqwest::Error> {
 // nws_loop.cpp
 const NWS_SLEEP_INTERVAL: u64 = 20; // every 20 minutes
 
-fn nws_loop(mut cache: RecentData) {
+pub fn nws_loop(cache: &mut RecentData) {
     loop {
         let response = call_api().unwrap();
         cache.update_nws_data(response);
@@ -178,7 +178,7 @@ const PUB_SLEEP_INTERVAL: u64 = 60; // every 60 minutes
 /// * `cache` - The cache of data to publish.
 /// 
 /// Returns an error if one occurs; otherwise runs indefinitely.
-async fn pub_loop(cache: RecentData) -> Result<(), Box<dyn std::error::Error>> {
+pub async fn pub_loop(cache: &RecentData) -> Result<(), Box<dyn std::error::Error>> {
     let mut socket = zeromq::PubSocket::new();
     socket.bind("tcp://127.0.0.1:5670").await?;
 
@@ -204,7 +204,7 @@ async fn pub_loop(cache: RecentData) -> Result<(), Box<dyn std::error::Error>> {
 /// * `cache` - The cache of data to publish.
 ///
 /// Returns an error if one occurs; otherwise runs indefinitely.
-async fn rep_loop(cache: RecentData) -> Result<(), Box<dyn std::error::Error>> {
+pub async fn rep_loop(cache: &RecentData) -> Result<(), Box<dyn std::error::Error>> {
     let mut socket = zeromq::RepSocket::new();
     socket.bind("tcp://*:5680").await?;
 
@@ -221,7 +221,7 @@ async fn rep_loop(cache: RecentData) -> Result<(), Box<dyn std::error::Error>> {
 }
 
 // sensor_loop.cpp
-async fn sensor_loop(mut cache: RecentData) -> Result<(), Box<dyn std::error::Error>> {
+pub async fn sensor_loop(cache: &mut RecentData) -> Result<(), Box<dyn std::error::Error>> {
     let mut socket = zeromq::SubSocket::new();
     // TODO: We might need to use .connect() instead of .bind()
     socket.bind("tcp://*:5676").await?;
@@ -237,9 +237,9 @@ async fn sensor_loop(mut cache: RecentData) -> Result<(), Box<dyn std::error::Er
 }
 
 // recent_data.cpp
-struct RecentData {
-    nws_data: String,
-    sensor_data: String,
+pub struct RecentData {
+    pub nws_data: String,
+    pub sensor_data: String,
 }
 impl RecentData {
     fn update_nws_data(&mut self, new_data: String) {
@@ -257,8 +257,3 @@ impl RecentData {
         )
     }
 }
-/// Singleton of `RecentData`
-static mut RECENT_DATA: RecentData = RecentData {
-    nws_data: String::new(),
-    sensor_data: String::new(),
-};
