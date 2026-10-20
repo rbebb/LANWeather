@@ -6,12 +6,13 @@ edition = "2018"
 
 [lib]
 name = "nws_request"
-crate-type = ["dylib"]
+crate-type = ["rlib", "dylib"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 reqwest = { version = "*", features = ["blocking", "json"] }
 json = "*"
+tokio = { version = "1", features = ["full"] }
+# Reference for configuring ZeroMQ to use tokio: https://github.com/zeromq/zmq.rs#choosing-your-async-runtime
 zeromq = ">=0.6.0,<0.7.0"
-

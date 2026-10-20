@@ -9,10 +9,9 @@ use json::object;
 // Imports from WIP code
 /////////
 use std::ffi::CStr;
-use std::thread;
 use std::time::Duration;
 
-
+use tokio::time::sleep;
 use zeromq::*;
 
 
@@ -93,13 +92,17 @@ fn call_api_old() -> Result<CString, reqwest::Error> {
 
 // Rewritten lib.rs
 
-fn call_api() -> Result<String, reqwest::Error> {
-    let client = reqwest::blocking::Client::builder()
+async fn call_api() -> Result<String, reqwest::Error> {
+    let client = reqwest::Client::builder()
         .user_agent("(lanweather, castlet1@wit.edu)")
+        .read_timeout(Duration::from_secs(10))
+        .connect_timeout(Duration::from_secs(30))
         .build()?;
-    let current = client.get("https://api.weather.gov/gridpoints/BOX/72,51").send()?.text()?;
-    let dforecast = client.get("https://api.weather.gov/gridpoints/BOX/72,51/forecast?units=si").send()?.text()?;
-    let hforecast = client.get("https://api.weather.gov/gridpoints/BOX/72,51/forecast/hourly?units=si").send()?.text()?;
+    let current = client.get("https://api.weather.gov/gridpoints/BOX/71,90").send().await?.text().await?;
+    let dforecast = client.get("https://api.weather.gov/gridpoints/BOX/71,90/forecast?units=si").send().await?.text().await?;
+    let hforecast = client.get("https://api.weather.gov/gridpoints/BOX/71,90/forecast/hourly?units=si").send().await?.text().await?;
+
+    format!("NWS current data: {}", current);
 
     // some naïve error checking
     let parsed_current = if current.as_bytes()[0] as char == '{' {json::parse(&current).unwrap()} else {json::parse("{\"bad\": true}").unwrap()};
@@ -152,18 +155,19 @@ fn call_api() -> Result<String, reqwest::Error> {
     package.insert("daily", daily_values["daily"].clone());
 
     let s = package.dump();
+    format!("NWS data: {}", s);
     return Ok(s);
 }
 
 // nws_loop.cpp
 const NWS_SLEEP_INTERVAL: u64 = 20; // every 20 minutes
 
-pub fn nws_loop(cache: &mut RecentData) {
+pub async fn nws_loop(cache: &mut RecentData) {
     loop {
-        let response = call_api().unwrap();
+        let response = call_api().await.unwrap();
         cache.update_nws_data(response);
-
-        thread::sleep(Duration::from_mins(NWS_SLEEP_INTERVAL));
+        sleep(Duration::from_mins(NWS_SLEEP_INTERVAL)).await;
+        print!("hello123\n");
     }
 }
 
@@ -184,13 +188,13 @@ pub async fn pub_loop(cache: &RecentData) -> Result<(), Box<dyn std::error::Erro
 
     println!("Start loop for publishing");
 
-    thread::sleep(Duration::from_mins(PUB_PRE_SLEEP_INTERVAL));
+    sleep(Duration::from_mins(PUB_PRE_SLEEP_INTERVAL)).await;
     loop {
         socket
             .send(cache.get_data_bundle().into())
             .await?;
 
-        thread::sleep(Duration::from_mins(PUB_SLEEP_INTERVAL));
+        sleep(Duration::from_mins(PUB_SLEEP_INTERVAL)).await;
     }
 }
 
@@ -226,6 +230,7 @@ pub async fn sensor_loop(cache: &mut RecentData) -> Result<(), Box<dyn std::erro
     // TODO: We might need to use .connect() instead of .bind()
     socket.bind("tcp://*:5676").await?;
     socket.subscribe("").await?;
+        println!("hello2\n");
 
     loop {
         let reply = socket.recv().await?;
